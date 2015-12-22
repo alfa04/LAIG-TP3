@@ -1,0 +1,540 @@
+<SCENE>
+
+<INITIALS>
+    <frustum near="0.1" far="500"/>          
+    <translation x="0" y="0" z="0" />               
+    <rotation axis="x" angle="0" />                
+    <rotation axis="y" angle="0" />                
+    <rotation axis="z" angle="0" />                
+    <scale sx="1" sy="1" sz="1" />         
+    <reference length="5" />   
+</INITIALS>
+
+ <ILLUMINATION>
+        <ambient r="1" g="0.52" b="0.5" a="1" />
+        <background r="0.5" g="0.7" b="0.8" a="1" />
+</ILLUMINATION>
+
+<LIGHTS>
+    <LIGHT id="light1">                                    <!-- light identifier -->
+        <enable value ="1" />                              <!-- enable/disable -->
+        <position x="8.0" y="8.0" z="8.0" w="1.0" />       <!-- light position -->
+        <ambient r="0.4" g="0.4" b="0.4" a="1.0" />        <!-- ambient component -->
+        <diffuse r="0.4" g="0.4" b="0.54" a="1.0" />       <!-- diffuse component -->
+        <specular r="0.7" g="0.7" b="0.7" a="1.0" />       <!-- specular component -->
+    </LIGHT>
+
+    <LIGHT id="light2">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="4.5" y="9.0" z="6.0" w="1.0" />       <!-- light position -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1.0" />        <!-- ambient component -->
+        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />        <!-- diffuse component -->
+        <specular r="0.9" g="0.9" b="0.9" a="0.9" />       <!-- specular component -->
+    </LIGHT>
+
+    <LIGHT id="light3">                                    <!-- light identifier -->
+        <enable value ="1" />                            <!-- enable/disable -->
+        <position x="4.5" y="8.0" z="9.0" w="1.0" />         <!-- light position -->
+        <ambient r="0.4" g="0.4" b="0.4" a="1.0" />        <!-- ambient component -->
+        <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />        <!-- diffuse component -->
+        <specular r="0.9" g="0.9" b="0.9" a="1.0" />       <!-- specular component -->
+    </LIGHT>
+    <!-- NOTE: this block "LIGHT" must be repeated as necessary with different "id" -->
+    
+</LIGHTS>
+
+<TEXTURES>
+    <TEXTURE id="body">
+        <file path="textures/gold.jpg" />                             <!-- path to file -->
+        <amplif_factor s="2.0" t="2.0" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="head">
+        <file path="textures/head.png" />                             <!-- path to file -->
+        <amplif_factor s="1000.0" t="1000.0" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+
+    <!-- NOTE: this block "TEXTURE" must be repeated as necessary with different "id" -->
+    
+</TEXTURES>
+
+<MATERIALS>
+    <MATERIAL id="body">                                  
+        <shininess value="60.0" />
+        <specular r="0.8" g="0.8" b="0.8" a="1.0" />        <!-- specular reflection -->
+        <diffuse r="0.4" g="0.4" b="0.4" a="1.0" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1.0" />         <!-- ambient reflection -->
+        <emission r=".1" g=".1" b=".1" a=".1" />        <!-- emission component -->
+    </MATERIAL>
+
+    <MATERIAL id="head">                                  
+        <shininess value="120.0" />
+        <specular r="0.8" g="0.8" b="0.8" a="1.0" />        <!-- specular reflection -->
+        <diffuse r="0.4" g="0.4" b="0.4" a="1.0" />         <!-- diffuse reflection -->
+        <ambient r="0.7" g="0.7" b="0.7" a="0.7" />         <!-- ambient reflection -->
+        <emission r=".1" g=".1" b=".1" a=".1" />        <!-- emission component -->
+    </MATERIAL>
+
+   
+
+</MATERIALS>
+
+<animations>
+    <animation id="ani1" span="10.0" type="linear">
+        <controlpoint xx="0.0" yy="0.0" zz="0.0" />
+        <controlpoint xx="1.7" yy="1.8" zz="1.7" />
+        <controlpoint xx="4.0" yy="-0.6" zz="4.0" />
+        <controlpoint xx="4.8" yy="-0.6" zz="4.8" />
+        <controlpoint xx="8.0" yy="1.0" zz="8.0" />
+        <controlpoint xx="11.0" yy="1.0" zz="11.0" />
+        <controlpoint xx="11.5" yy="1.5" zz="11.5" />
+    </animation>
+    <animation id="ani2" span="10.0" type="circular" center="0 5 0" radius="10.0" startang="0" rotang="10" />
+</animations>
+
+<LEAVES>
+
+    <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
+    <LEAF id="11" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="13" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="14" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="15" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="16" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="17" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="18" type="rectangle" args="0.0 1.0 1.0 0.0" /> <!-- wallL and wallR and floor-->
+    <!-- <LEAF id="triangle2" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
+    <LEAF id="cylinderBody" type="cylinder" args="10.0 0.2 0.2 20 5" /> 
+    <LEAF id="cylinderArms" type="cylinder" args="5.0 0.2 0.2 30 30" /> 
+    <LEAF id="cylinderHat1" type="cylinder" args="0.5 1.2 0.5 20 6" />
+    <LEAF id="cylinderHat2" type="cylinder" args="1.3 0.5 0.1 20 6" /> 
+    <LEAF id="cylinderStick" type="cylinder" args="0.4 1.2 1.2 20 8" /> 
+    <LEAF id="sphereHead" type="sphere" args="1.0 20 20" />
+    <LEAF id="triangleKnife" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
+    <LEAF id="ceu" type="plane" parts="5" />
+   
+    <LEAF id="ss" type="patch" order="2" partsU="10" partsV="10" >
+            <controlpoint x="-1" y="-1" z="1" />
+            <controlpoint x="-0.5" y="0" z="0.5" />
+            <controlpoint x="-0.2" y="0.5" z="0" />
+            <controlpoint x="0" y="-1" z="1" />
+            <controlpoint x="0" y="0" z="5" />
+            <controlpoint x="0" y="0.5" z="0" />
+            <controlpoint x="1" y="-1" z="1" />
+            <controlpoint x="0.5" y="0" z="0.5" />
+            <controlpoint x="0.2" y="0.5" z="0" />
+    </LEAF>
+    <LEAF id="sa" type="patch" order="1" partsU="10" partsV="10" >
+            <controlpoint x="-2" y="-1" z="1" />
+            <controlpoint x="-0.5" y="0" z="0.5" />
+            <controlpoint x="-0.2" y="0.5" z="0" />
+            <controlpoint x="0" y="-1" z="1" />
+</LEAF>
+
+    <LEAF id="rainhatopo" type="patch" order="3" partsU="10" partsV="10" >
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-2" y="0" z="3" />
+            <controlpoint x="-1.5" y="0" z="2" />
+            <controlpoint x="-0.5" y="0" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-1" y="2" z="3" />
+            <controlpoint x="-1" y="1.5" z="2" />
+            <controlpoint x="-0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="1" y="2" z="3" />
+            <controlpoint x="1" y="1.5" z="2" />
+            <controlpoint x="0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="2" y="0" z="3" />
+            <controlpoint x="1.5" y="0" z="2" />
+            <controlpoint x="0.5" y="0" z="0" />
+
+    </LEAF>
+        <LEAF id="rainhacorpoleaf" type="patch" order="3" partsU="10" partsV="10" >
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-3.5" y="0" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="-0.5" y="0" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-1" y="3.5" z="3" />
+            <controlpoint x="-1" y="0" z="2" />
+            <controlpoint x="-0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="1" y="3.5" z="3" />
+            <controlpoint x="1" y="0" z="2" />
+            <controlpoint x="0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="3.5" y="0" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="0.5" y="0" z="0" />
+
+    </LEAF>
+
+    <LEAF id="rainhacorpobaseleaf" type="patch" order="3" partsU="10" partsV="10" >
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-4.5" y="0" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="-0.5" y="0" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-1" y="4.5" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="-0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="1" y="4.5" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="4.5" y="0" z="3" />
+            <controlpoint x="0" y="0" z="2" />
+            <controlpoint x="0.5" y="0" z="0" />
+
+    </LEAF>
+
+
+      <LEAF id="rainhatopoleaf" type="patch" order="3" partsU="10" partsV="10" >
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-2" y="0" z="3" />
+            <controlpoint x="-1.5" y="0" z="2" />
+            <controlpoint x="-0.5" y="0" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="-1" y="2" z="3" />
+            <controlpoint x="-1" y="1.5" z="2" />
+            <controlpoint x="-0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="1" y="2" z="3" />
+            <controlpoint x="1" y="1.5" z="2" />
+            <controlpoint x="0.5" y="0.5" z="0" />
+
+            <controlpoint x="0" y="0" z="3" />
+            <controlpoint x="2" y="0" z="3" />
+            <controlpoint x="1.5" y="0" z="2" />
+            <controlpoint x="0.5" y="0" z="0" />
+            
+    </LEAF> -->
+
+</LEAVES>
+
+<NODES>
+
+    <ROOT id="scene" />
+
+    <NODE id="scene">
+
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />       
+  
+        <DESCENDANTS> 
+            <DESCENDANT id="tabuleiro" />
+           <!-- <DESCENDANT id="rainhatopoall" /> -->
+            <!-- <DESCENDANT id="rainhacorpoall" /> -->
+            <!-- <DESCENDANT id="rainhacorpobaseall" /> -->
+            <!-- <DESCENDANT id="base" />-->
+        </DESCENDANTS>
+
+    </NODE>
+    <NODE id="tabuleiro">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+            
+            <DESCENDANT id="12" />
+            <DESCENDANT id="13" />
+            <DESCENDANT id="14" />
+            <DESCENDANT id="15" />
+            <DESCENDANT id="16" />
+            <DESCENDANT id="17" />
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+
+    </NODE>
+    <NODE id="11">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="12">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="13">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="14">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="15">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="16">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="17">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+        <NODE id="18">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="base">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+        <TRANSLATION x="0" y="0" z="-3.3" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="cylinderStick" />
+        </DESCENDANTS>
+
+    </NODE>
+    <NODE id="rainhatopoall">  
+        <MATERIAL id="body" />
+        <TEXTURE id="body" />     
+      <TRANSLATION x="0" y="0" z="2.5" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="rainhatopoleaf" /> 
+            <DESCENDANT id="rainhatopo2" /> 
+            <DESCENDANT id="sphere" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="rainhatopo2">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        
+        <ROTATION axis="z" angle="-180.0" />
+        <DESCENDANTS>     
+              <DESCENDANT id="rainhatopoleaf" />  
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="sphere">      
+            <MATERIAL id="body" />
+        <TEXTURE id="body" /> 
+
+        <TRANSLATION x="0" y="0" z="3.4" />
+        <SCALE sx="0.5" sy="0.5" sz="0.5" /> 
+        <DESCENDANTS>     
+              <DESCENDANT id="sphereHead" />  
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="rainhacorpoall">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        
+        <DESCENDANTS>     
+                <DESCENDANT id="rainhacorpoleaf" />  
+              <DESCENDANT id="rainhacorpo" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="rainhacorpo">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        <ROTATION axis="z" angle="-180.0" />
+        <DESCENDANTS>     
+              <DESCENDANT id="rainhacorpoleaf" />  
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="rainhacorpobaseall">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        <ROTATION axis="x" angle="-180.0" /> 
+        <DESCENDANTS>     
+              <DESCENDANT id="rainhacorpobaseleaf" />  
+              <DESCENDANT id="rainhacorpobase" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="rainhacorpobase">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        <ROTATION axis="z" angle="-180.0" />
+        <DESCENDANTS>     
+              <DESCENDANT id="rainhacorpobaseleaf" />  
+        </DESCENDANTS>
+    </NODE>
+
+     <NODE id="aviao">     
+        <MATERIAL id="body" /> 
+        <TEXTURE id="body" />  
+        <DESCENDANTS>
+            <DESCENDANT id="triangle2" />  
+        </DESCENDANTS>
+
+        <animationref id="ani2" />
+
+    </NODE>
+
+    <NODE id="mar">   
+        <MATERIAL id="body" /> 
+        <TEXTURE id="body" />   
+        <DESCENDANTS>
+            <DESCENDANT id="aguaNo" />  
+        </DESCENDANTS>
+    </NODE>
+    
+    <NODE id="barco">       
+
+        <MATERIAL id="body" />      
+        <TEXTURE id="body" /> 
+        
+        <ROTATION axis="z" angle="-180.0" />
+        <ROTATION axis="y" angle="-180.0" />
+        <DESCENDANTS>     
+              <DESCENDANT id="trascasco" />  
+              <DESCENDANT id="rainhatopo" /> 
+              <DESCENDANT id="interior" />
+              <DESCENDANT id="bandeiranode" />     
+              <DESCENDANT id="bandeiranode1" />
+        </DESCENDANTS>
+
+        <animationref id="ani1"/>
+
+    </NODE>
+        <NODE id="interior">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="bodyint" />   
+         
+        <DESCENDANTS>
+              <DESCENDANT id="interiorcascotras" />
+              <DESCENDANT id="rainhatopoleaf" />    
+              <DESCENDANT id="tabuanode" /> 
+        </DESCENDANTS>
+
+    </NODE>
+        <NODE id="tabuanode">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="tabua" /> 
+         
+        <DESCENDANTS>  
+              <DESCENDANT id="tabua" /> 
+              <DESCENDANT id="paunode" /> 
+              <DESCENDANT id="mastronode" /> 
+        </DESCENDANTS>
+
+    </NODE>
+        <NODE id="paunode">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="tabua" /> 
+        <TRANSLATION x="0" y="0" z="4" />
+        <ROTATION axis="x" angle="-40.0" />
+        <TRANSLATION x="0" y="0" z="-3" />
+        <DESCENDANTS>  
+              <DESCENDANT id="pau" /> 
+        </DESCENDANTS>
+
+    </NODE>
+        <NODE id="mastronode">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="tabua" /> 
+        <TRANSLATION x="0" y="-2.5" z="2.5" />
+        <ROTATION axis="x" angle="-90.0" />
+        <TRANSLATION x="0" y="0" z="-3" />
+        <DESCENDANTS>  
+              <DESCENDANT id="mastro" /> 
+        </DESCENDANTS>
+
+    </NODE>
+    <NODE id="bandeiranode">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="bandeira" /> 
+
+        <TRANSLATION x="0" y="-1.5" z="2.5" />
+        <DESCENDANTS>  
+              <DESCENDANT id="bandeira" /> 
+        </DESCENDANTS>
+
+    </NODE>
+      <NODE id="bandeiranode1">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="bandeira1" /> 
+
+        <TRANSLATION x="0" y="-1.5" z="2.5" />
+        
+        <DESCENDANTS>  
+              <DESCENDANT id="bandeira1" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="aguaNo">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="mar" /> 
+        
+       <TRANSLATION x="4.0" y="-1.5" z="4.0" />
+        <DESCENDANTS>  
+              <DESCENDANT id="agua" /> 
+        </DESCENDANTS>
+
+    </NODE>
+     <NODE id="ceunode">   
+        <MATERIAL id="body" />    
+        <TEXTURE id="ceu" /> 
+        
+       <SCALE sx="1" sy="10" sz="10" />
+        <DESCENDANTS>  
+              <DESCENDANT id="ceu" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+</SCENE>
