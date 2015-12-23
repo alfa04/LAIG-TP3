@@ -44,14 +44,14 @@
 </LIGHTS>
 
 <TEXTURES>
-    <TEXTURE id="body">
-        <file path="textures/gold.jpg" />                             <!-- path to file -->
-        <amplif_factor s="2.0" t="2.0" />                <!-- x/s, y/t -->
+    <TEXTURE id="squareblack">
+        <file path="textures/squareblack.jpeg" />                             <!-- path to file -->
+        <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
     </TEXTURE>
 
-    <TEXTURE id="head">
-        <file path="textures/head.png" />                             <!-- path to file -->
-        <amplif_factor s="1000.0" t="1000.0" />                <!-- x/s, y/t -->
+    <TEXTURE id="squarewhite">
+        <file path="textures/squarewhite.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
     </TEXTURE>
 
 
@@ -103,7 +103,16 @@
     <LEAF id="15" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="16" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="17" type="rectangle" args="0.0 1.0 1.0 0.0" />
-    <LEAF id="18" type="rectangle" args="0.0 1.0 1.0 0.0" /> <!-- wallL and wallR and floor-->
+    <LEAF id="18" type="rectangle" args="0.0 1.0 1.0 0.0" />
+
+    <LEAF id="21" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="22" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="23" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="24" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="25" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="26" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="27" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="28" type="rectangle" args="0.0 1.0 1.0 0.0" /> <!-- wallL and wallR and floor-->
     <!-- <LEAF id="triangle2" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
     <LEAF id="cylinderBody" type="cylinder" args="10.0 0.2 0.2 20 5" /> 
     <LEAF id="cylinderArms" type="cylinder" args="5.0 0.2 0.2 30 30" /> 
@@ -250,84 +259,550 @@
         <TEXTURE id="body" />     
 
         <DESCENDANTS>     
-            <DESCENDANT id="11" />
-            
-            <DESCENDANT id="12" />
-            <DESCENDANT id="13" />
-            <DESCENDANT id="14" />
-            <DESCENDANT id="15" />
-            <DESCENDANT id="16" />
-            <DESCENDANT id="17" />
-            <DESCENDANT id="18" />
+            <DESCENDANT id="11n" />
+            <DESCENDANT id="12n" />
+            <DESCENDANT id="13n" />
+            <DESCENDANT id="14n" />
+            <DESCENDANT id="15n" />
+            <DESCENDANT id="16n" />
+            <DESCENDANT id="17n" />
+            <DESCENDANT id="18n" />
+
+            <DESCENDANT id="21n" />
+            <DESCENDANT id="22n" />
+            <DESCENDANT id="23n" />
+            <DESCENDANT id="24n" />
+            <DESCENDANT id="25n" />
+            <DESCENDANT id="26n" />
+            <DESCENDANT id="27n" />
+            <DESCENDANT id="28n" />
         </DESCENDANTS>
 
     </NODE>
-     <NODE id="11">  
+    <!-- lINHA 1 -->
+     <NODE id="11n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squarewhite" />     
         <TRANSLATION x="0" y="0" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="11" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="12">  
+    <NODE id="12n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squareblack" />     
         <TRANSLATION x="0" y="1" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="12" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="13">  
+    <NODE id="13n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squarewhite" />     
         <TRANSLATION x="0" y="2" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="13" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="14">  
+    <NODE id="14n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squareblack" />     
         <TRANSLATION x="0" y="3" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="14" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="15">  
+    <NODE id="15n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squarewhite" />     
         <TRANSLATION x="0" y="4" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="15" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="16">  
+    <NODE id="16n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squareblack" />     
         <TRANSLATION x="0" y="5" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="16" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="17">  
+    <NODE id="17n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squarewhite" />     
         <TRANSLATION x="0" y="6" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="17" />
         </DESCENDANTS>
     </NODE>
-        <NODE id="18">  
+   <NODE id="18n">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squareblack" />     
         <TRANSLATION x="0" y="7" z="0" /> 
         <DESCENDANTS>     
             <DESCENDANT id="18" />
         </DESCENDANTS>
     </NODE>
-<!--
-    <NODE id="base">  
+
+        <!-- lINHA 2 -->
+     <NODE id="21n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="1" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="21" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="22n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="1" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="22" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="23n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="1" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="23" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="24n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="1" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="24" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="25n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="1" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="25" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="26n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="1" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="26" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="27n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="1" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="27" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="28n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="1" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="28" />
+        </DESCENDANTS>
+    </NODE>
+
+        <!-- lINHA 3 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+        <!-- lINHA 4 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+        <!-- lINHA 5 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+        <!-- lINHA 6 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+        <!-- lINHA 7 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+        <!-- lINHA 8 -->
+     <NODE id="11n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="11" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="12n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="12" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="13n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="13" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="14n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="14" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="15n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="15" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="16n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="16" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="17n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="0" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="17" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="18n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="0" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="18" />
+        </DESCENDANTS>
+    </NODE>
+
+    <!-- <NODE id="base">  
         <MATERIAL id="body" />
         <TEXTURE id="body" />     
         <TRANSLATION x="0" y="0" z="-3.3" /> 
