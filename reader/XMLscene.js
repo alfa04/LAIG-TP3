@@ -225,7 +225,7 @@ XMLscene.prototype.display = function () {
 			}
             node["material"].apply();
             this.multMatrix(node["matrix"]);
-            this.registerForPick(node["id"], node["primitive"]);
+            this.registerForPick(i+1, node["primitive"]);
             //console.log(node["id"]);
             node["primitive"].display();
             this.popMatrix();

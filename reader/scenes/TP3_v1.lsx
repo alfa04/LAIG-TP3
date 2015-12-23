@@ -97,7 +97,7 @@
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
     <LEAF id="11" type="rectangle" args="0.0 1.0 1.0 0.0" />
-    <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
+   <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="13" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="14" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="15" type="rectangle" args="0.0 1.0 1.0 0.0" />
@@ -262,7 +262,7 @@
         </DESCENDANTS>
 
     </NODE>
-    <NODE id="11">  
+     <NODE id="11">  
         <MATERIAL id="body" />
         <TEXTURE id="body" />     
         <TRANSLATION x="0" y="0" z="0" /> 
@@ -326,7 +326,7 @@
             <DESCENDANT id="18" />
         </DESCENDANTS>
     </NODE>
-
+<!--
     <NODE id="base">  
         <MATERIAL id="body" />
         <TEXTURE id="body" />     
@@ -535,6 +535,6 @@
               <DESCENDANT id="ceu" /> 
         </DESCENDANTS>
 
-    </NODE>
-
+    </NODE> -->
+    </NODES>
 </SCENE>
