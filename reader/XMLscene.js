@@ -88,7 +88,7 @@ XMLscene.prototype.onGraphLoaded = function ()
     //axis reference
  
 	this.axis = new CGFaxis(this,this.graph.initialsInfo.reference['length']);
-
+	this.axis = new CGFaxis(this,0);
 
 	//ILLUMINATION
 
