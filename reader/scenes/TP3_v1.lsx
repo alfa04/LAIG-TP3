@@ -258,6 +258,9 @@
         <MATERIAL id="body" />
         <TEXTURE id="body" />     
 
+        <ROTATION axis="x" angle="-90.0" />
+        <TRANSLATION x="0" y="-8" z="0" /> 
+
         <DESCENDANTS>     
             <DESCENDANT id="11n" />
             <DESCENDANT id="12n" />
