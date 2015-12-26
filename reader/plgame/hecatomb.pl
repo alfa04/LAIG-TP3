@@ -69,6 +69,7 @@ gameMode(bvb):-write('Computer against itself!'),nl,nl, play(bvb).
 
 gameMode(_):-write('Wrong option, choose a new one!'), nl, read(Choice), gameMode(Choice),nl.
 
+
 play(pvp):-
     random(1,3, Player), write('Player number '), 
     write(Player), write(' will start the game!'),nl,

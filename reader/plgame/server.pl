@@ -107,7 +107,7 @@ print_header_line(_).
 
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).
-parse_input(play(Z), escolhidomododejogo) :- play(pvp).
+parse_input(play(X), board(B)) :- play(X).
 parse_input(quit, goodbye).
 
 	
