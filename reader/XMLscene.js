@@ -32,6 +32,7 @@ XMLscene.prototype.init = function (application) {
 	
 	//this.setUpdatePeriod(10);
 	this.setPickEnabled(true);
+	//this.interface.menu();
 
 };
 
@@ -60,7 +61,7 @@ XMLscene.prototype.initLights = function () {
 
 	}
 
-    this.interface.enableLights();
+   // this.interface.enableLights();
 };
 
 XMLscene.prototype.initCameras = function () {
@@ -414,7 +415,7 @@ XMLscene.prototype.setAnimation = function(){
 		}
 	}
 
-	this.interface.enableAnims();
+	//this.interface.enableAnims();
 };
 
 XMLscene.prototype.fixAnims = function() {
@@ -479,6 +480,7 @@ XMLscene.prototype.logPicking = function ()
 				var obj = this.pickResults[i][0];
 				if (obj)
 				{
+					console.log(obj);
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 				}

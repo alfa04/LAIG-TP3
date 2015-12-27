@@ -97,14 +97,13 @@
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
     <LEAF id="11" type="rectangle" args="0.0 1.0 1.0 0.0" />
-   <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="13" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="14" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="15" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="16" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="17" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="18" type="rectangle" args="0.0 1.0 1.0 0.0" />
-
     <LEAF id="21" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="22" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="23" type="rectangle" args="0.0 1.0 1.0 0.0" />
@@ -112,7 +111,55 @@
     <LEAF id="25" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="26" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="27" type="rectangle" args="0.0 1.0 1.0 0.0" />
-    <LEAF id="28" type="rectangle" args="0.0 1.0 1.0 0.0" /> <!-- wallL and wallR and floor-->
+    <LEAF id="28" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="31" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="32" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="33" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="34" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="35" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="36" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="37" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="38" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="41" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="42" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="43" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="44" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="45" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="46" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="47" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="48" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="51" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="52" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="53" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="54" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="55" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="56" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="57" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="58" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="61" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="62" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="63" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="64" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="65" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="66" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="67" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="68" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="71" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="72" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="73" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="74" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="75" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="76" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="77" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="78" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="81" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="82" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="83" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="84" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="85" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="86" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="87" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="88" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <!-- <LEAF id="triangle2" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
     <LEAF id="cylinderBody" type="cylinder" args="10.0 0.2 0.2 20 5" /> 
     <LEAF id="cylinderArms" type="cylinder" args="5.0 0.2 0.2 30 30" /> 
@@ -270,7 +317,6 @@
             <DESCENDANT id="16n" />
             <DESCENDANT id="17n" />
             <DESCENDANT id="18n" />
-
             <DESCENDANT id="21n" />
             <DESCENDANT id="22n" />
             <DESCENDANT id="23n" />
@@ -279,54 +325,54 @@
             <DESCENDANT id="26n" />
             <DESCENDANT id="27n" />
             <DESCENDANT id="28n" />
-	    <DESCENDANT id="29n" />
- <DESCENDANT id="30n" />
- <DESCENDANT id="31n" />
- <DESCENDANT id="32n" />
- <DESCENDANT id="33n" />
- <DESCENDANT id="34n" />
- <DESCENDANT id="35n" />
- <DESCENDANT id="36n" />
-<DESCENDANT id="37n" />
-<DESCENDANT id="38n" />
-<DESCENDANT id="39n" />
-<DESCENDANT id="40n" />
-<DESCENDANT id="41n" />
-<DESCENDANT id="42n" />
-<DESCENDANT id="43n" />
-<DESCENDANT id="44n" />
-<DESCENDANT id="45n" />
-<DESCENDANT id="46n" />
-<DESCENDANT id="47n" />
-<DESCENDANT id="48n" />
-<DESCENDANT id="49n" />
-<DESCENDANT id="50n" />
-<DESCENDANT id="51n" />
-<DESCENDANT id="52n" />
-<DESCENDANT id="53n" />
-<DESCENDANT id="54n" />
-<DESCENDANT id="55n" />
-<DESCENDANT id="56n" />
-<DESCENDANT id="57n" />
-<DESCENDANT id="58n" />
-<DESCENDANT id="59n" />
-<DESCENDANT id="60n" />
-<DESCENDANT id="61n" />
-<DESCENDANT id="62n" />
-<DESCENDANT id="63n" />
-<DESCENDANT id="64n" />
-<DESCENDANT id="65n" />
-<DESCENDANT id="66n" />
-<DESCENDANT id="67n" />
-<DESCENDANT id="68n" />
-<DESCENDANT id="69n" />
-<DESCENDANT id="70n" />
-<DESCENDANT id="71n" />
-<DESCENDANT id="72n" />
-<DESCENDANT id="73n" />
-<DESCENDANT id="74n" />
-<DESCENDANT id="75n" />
-<DESCENDANT id="76n" />
+            <DESCENDANT id="31n" />
+            <DESCENDANT id="32n" />
+            <DESCENDANT id="33n" />
+            <DESCENDANT id="34n" />
+            <DESCENDANT id="35n" />
+            <DESCENDANT id="36n" />
+            <DESCENDANT id="37n" />
+            <DESCENDANT id="38n" />
+            <DESCENDANT id="41n" />
+            <DESCENDANT id="42n" />
+            <DESCENDANT id="43n" />
+            <DESCENDANT id="44n" />
+            <DESCENDANT id="45n" />
+            <DESCENDANT id="46n" />
+            <DESCENDANT id="47n" />
+            <DESCENDANT id="48n" />
+            <DESCENDANT id="51n" />
+            <DESCENDANT id="52n" />
+            <DESCENDANT id="53n" />
+            <DESCENDANT id="54n" />
+            <DESCENDANT id="55n" />
+            <DESCENDANT id="56n" />
+            <DESCENDANT id="57n" />
+            <DESCENDANT id="58n" />
+            <DESCENDANT id="61n" />
+            <DESCENDANT id="62n" />
+            <DESCENDANT id="63n" />
+            <DESCENDANT id="64n" />
+            <DESCENDANT id="65n" />
+            <DESCENDANT id="66n" />
+            <DESCENDANT id="67n" />
+            <DESCENDANT id="68n" />
+            <DESCENDANT id="71n" />
+            <DESCENDANT id="72n" />
+            <DESCENDANT id="73n" />
+            <DESCENDANT id="74n" />
+            <DESCENDANT id="75n" />
+            <DESCENDANT id="76n" />
+            <DESCENDANT id="77n" />
+            <DESCENDANT id="78n" />
+            <DESCENDANT id="81n" />
+            <DESCENDANT id="82n" />
+            <DESCENDANT id="83n" />
+            <DESCENDANT id="84n" />
+            <DESCENDANT id="85n" />
+            <DESCENDANT id="86n" />
+            <DESCENDANT id="87n" />
+            <DESCENDANT id="88n" />
         </DESCENDANTS>
 
     </NODE>
@@ -461,388 +507,388 @@
             <DESCENDANT id="28" />
         </DESCENDANTS>
     </NODE>
-<NODE id="29n">  
+<NODE id="31n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
         <TRANSLATION x="2" y="0" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
-        </DESCENDANTS>
-    </NODE>
-<NODE id="30n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="2" y="1" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="28" />
-        </DESCENDANTS>
-    </NODE>
-<NODE id="36n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="2" y="2" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="28" />
-        </DESCENDANTS>
-    </NODE>
-<NODE id="31n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="2" y="3" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="31" />
         </DESCENDANTS>
     </NODE>
 <NODE id="32n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="2" y="4" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="2" y="1" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="32" />
         </DESCENDANTS>
     </NODE>
 <NODE id="33n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="2" y="5" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="2" y="2" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="33" />
         </DESCENDANTS>
     </NODE>
 <NODE id="34n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="2" y="6" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="2" y="3" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="34" />
         </DESCENDANTS>
     </NODE>
 <NODE id="35n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="2" y="7" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="2" y="4" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="35" />
+        </DESCENDANTS>
+    </NODE>
+<NODE id="36n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="2" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="36" />
         </DESCENDANTS>
     </NODE>
 <NODE id="37n">  
         <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="2" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="37" />
+        </DESCENDANTS>
+    </NODE>
+<NODE id="38n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="2" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="38" />
+        </DESCENDANTS>
+    </NODE>
+<NODE id="41n">  
+        <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
         <TRANSLATION x="3" y="0" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="21" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="38n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="3" y="1" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="22" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="39n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="3" y="2" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="23" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="40n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="3" y="3" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="24" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="41n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="3" y="4" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="25" />
+            <DESCENDANT id="41" />
         </DESCENDANTS>
     </NODE>
     <NODE id="42n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="3" y="5" z="0" /> 
+        <TRANSLATION x="3" y="1" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="26" />
+            <DESCENDANT id="42" />
         </DESCENDANTS>
     </NODE>
     <NODE id="43n">  
         <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
-        <TRANSLATION x="3" y="6" z="0" /> 
+        <TRANSLATION x="3" y="2" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="27" />
+            <DESCENDANT id="43" />
         </DESCENDANTS>
     </NODE>
-   <NODE id="44n">  
+    <NODE id="44n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="3" y="7" z="0" /> 
+        <TRANSLATION x="3" y="3" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="44" />
         </DESCENDANTS>
     </NODE>
-<NODE id="45n">  
+    <NODE id="45n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="4" y="0" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="3" y="4" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="11" />
+            <DESCENDANT id="45" />
         </DESCENDANTS>
     </NODE>
     <NODE id="46n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="4" y="1" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="3" y="5" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="12" />
+            <DESCENDANT id="46" />
         </DESCENDANTS>
     </NODE>
     <NODE id="47n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="4" y="2" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="13" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="48n">  
-        <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
-        <TRANSLATION x="4" y="3" z="0" /> 
+        <TRANSLATION x="3" y="6" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="14" />
+            <DESCENDANT id="47" />
         </DESCENDANTS>
     </NODE>
-    <NODE id="49n">  
+   <NODE id="48n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="4" y="4" z="0" /> 
+        <TRANSLATION x="3" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="15" />
+            <DESCENDANT id="48" />
         </DESCENDANTS>
     </NODE>
-    <NODE id="50n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="4" y="5" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="16" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="51n">  
+<NODE id="51n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="4" y="6" z="0" /> 
+        <TRANSLATION x="4" y="0" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="17" />
+            <DESCENDANT id="51" />
         </DESCENDANTS>
     </NODE>
-   <NODE id="52n">  
+    <NODE id="52n">  
         <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
-        <TRANSLATION x="4" y="7" z="0" /> 
+        <TRANSLATION x="4" y="1" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="18" />
+            <DESCENDANT id="52" />
         </DESCENDANTS>
     </NODE>
     <NODE id="53n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="5" y="0" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="4" y="2" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="21" />
+            <DESCENDANT id="53" />
         </DESCENDANTS>
     </NODE>
     <NODE id="54n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="5" y="1" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="4" y="3" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="22" />
+            <DESCENDANT id="54" />
         </DESCENDANTS>
     </NODE>
     <NODE id="55n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="5" y="2" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="4" y="4" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="23" />
+            <DESCENDANT id="55" />
         </DESCENDANTS>
     </NODE>
     <NODE id="56n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="5" y="3" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="4" y="5" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="24" />
+            <DESCENDANT id="56" />
         </DESCENDANTS>
     </NODE>
     <NODE id="57n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="5" y="4" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="25" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="58n">  
-        <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="5" y="5" z="0" /> 
+        <TRANSLATION x="4" y="6" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="26" />
+            <DESCENDANT id="57" />
         </DESCENDANTS>
     </NODE>
-    <NODE id="59n">  
+   <NODE id="58n">  
         <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
-        <TRANSLATION x="5" y="6" z="0" /> 
+        <TRANSLATION x="4" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="27" />
+            <DESCENDANT id="58" />
         </DESCENDANTS>
     </NODE>
-   <NODE id="60n">  
+    <NODE id="61n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="5" y="7" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="5" y="0" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
-        </DESCENDANTS>
-    </NODE>
-<NODE id="61n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="6" y="0" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="11" />
+            <DESCENDANT id="61" />
         </DESCENDANTS>
     </NODE>
     <NODE id="62n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="6" y="1" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="5" y="1" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="12" />
+            <DESCENDANT id="62" />
         </DESCENDANTS>
     </NODE>
     <NODE id="63n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="6" y="2" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="5" y="2" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="13" />
+            <DESCENDANT id="63" />
         </DESCENDANTS>
     </NODE>
     <NODE id="64n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="6" y="3" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="5" y="3" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="14" />
+            <DESCENDANT id="64" />
         </DESCENDANTS>
     </NODE>
     <NODE id="65n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="6" y="4" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="5" y="4" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="15" />
+            <DESCENDANT id="65" />
         </DESCENDANTS>
     </NODE>
     <NODE id="66n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="6" y="5" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="5" y="5" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="16" />
+            <DESCENDANT id="66" />
         </DESCENDANTS>
     </NODE>
     <NODE id="67n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="6" y="6" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="5" y="6" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="17" />
+            <DESCENDANT id="67" />
         </DESCENDANTS>
     </NODE>
    <NODE id="68n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="6" y="7" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="5" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="18" />
+            <DESCENDANT id="68" />
         </DESCENDANTS>
     </NODE>
-<NODE id="69n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="7" y="0" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="21" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="70n">  
+<NODE id="71n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="7" y="1" z="0" /> 
+        <TRANSLATION x="6" y="0" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="22" />
-        </DESCENDANTS>
-    </NODE>
-    <NODE id="71n">  
-        <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="7" y="2" z="0" /> 
-        <DESCENDANTS>     
-            <DESCENDANT id="23" />
+            <DESCENDANT id="71" />
         </DESCENDANTS>
     </NODE>
     <NODE id="72n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="7" y="3" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="6" y="1" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="24" />
+            <DESCENDANT id="72" />
         </DESCENDANTS>
     </NODE>
     <NODE id="73n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squareblack" />     
-        <TRANSLATION x="7" y="4" z="0" /> 
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="6" y="2" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="25" />
+            <DESCENDANT id="73" />
         </DESCENDANTS>
     </NODE>
     <NODE id="74n">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />     
-        <TRANSLATION x="7" y="5" z="0" /> 
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="6" y="3" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="26" />
+            <DESCENDANT id="74" />
         </DESCENDANTS>
     </NODE>
     <NODE id="75n">  
         <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="6" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="75" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="76n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="6" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="76" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="77n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="6" y="6" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="77" />
+        </DESCENDANTS>
+    </NODE>
+   <NODE id="78n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="6" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="78" />
+        </DESCENDANTS>
+    </NODE>
+<NODE id="81n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="7" y="0" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="81" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="82n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="7" y="1" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="82" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="83n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="7" y="2" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="83" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="84n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="7" y="3" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="84" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="85n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squareblack" />     
+        <TRANSLATION x="7" y="4" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="85" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="86n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="7" y="5" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="86" />
+        </DESCENDANTS>
+    </NODE>
+    <NODE id="87n">  
+        <MATERIAL id="body" />
         <TEXTURE id="squareblack" />     
         <TRANSLATION x="7" y="6" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="27" />
+            <DESCENDANT id="87" />
         </DESCENDANTS>
     </NODE>
-   <NODE id="76n">  
+   <NODE id="88n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
         <TRANSLATION x="7" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="28" />
+            <DESCENDANT id="88" />
         </DESCENDANTS>
     </NODE>
     <!-- <NODE id="base">  
