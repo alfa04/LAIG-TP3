@@ -482,7 +482,7 @@ XMLscene.prototype.logPicking = function ()
 				{
 					console.log(obj);
 					var customId = this.pickResults[i][1];				
-					console.log("Picked object: " + obj + ", with pick id " + customId);
+					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
