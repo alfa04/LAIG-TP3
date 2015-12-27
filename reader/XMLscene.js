@@ -481,6 +481,7 @@ XMLscene.prototype.logPicking = function ()
 				if (obj)
 				{
 					console.log(obj);
+					makeRequest();
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
 				}
@@ -488,4 +489,33 @@ XMLscene.prototype.logPicking = function ()
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
 	}
+}
+
+function getPrologRequest(requestString, onSuccess, onError, port)
+{
+	var requestPort = port || 8081
+	var request = new XMLHttpRequest();
+	request.open('GET', 'http://localhost:'+requestPort+'/'+requestString, true);
+
+	request.onload = onSuccess || function(data){console.log("Request successful. Reply: " + data.target.response);};
+	request.onerror = onError || function(){console.log("Error waiting for response");};
+
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	request.send();
+}
+
+function makeRequest()
+{
+	// Get Parameter Values
+	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
+	
+	// Make Request
+	getPrologRequest(requestString, handleReply);
+
+}
+
+//Handle the Reply
+function handleReply(data){
+	console.log(data.target.response);
+	document.querySelector("#query_result").innerHTML=data.target.response;
 }

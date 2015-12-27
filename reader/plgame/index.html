@@ -8,7 +8,7 @@
 		<h1>Sicstus HTTP Test</h1>
 	
 		<div>
-			<input id="query_field" type="Text" value="handshake"/>
+			<input id="query_field" type="Text" value="lol"/>
 			<br>
 			<button id="send_button" type="button" onClick="makeRequest();"> Send </button>
 		</div>
@@ -32,14 +32,16 @@
 			function makeRequest()
 			{
 				// Get Parameter Values
-				var requestString = document.querySelector("#query_field").value;				
+				var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 				
 				// Make Request
 				getPrologRequest(requestString, handleReply);
+
 			}
 			
 			//Handle the Reply
 			function handleReply(data){
+				console.log(data.target.response);
 				document.querySelector("#query_result").innerHTML=data.target.response;
 			}
 		
