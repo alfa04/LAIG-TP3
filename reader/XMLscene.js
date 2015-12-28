@@ -319,6 +319,17 @@ XMLscene.prototype.findNode = function(id) {
 
 };
 
+//@Apu
+XMLscene.prototype.indexNode = function(id) {
+	for(var i = 0; i<this.nodesList.length; i++){
+		if(this.nodesList[i].id == id){
+			return i;
+		}
+
+	}
+
+};
+
 XMLscene.prototype.setNodes = function() {
 
 	var root = this.findNode(this.graph.rootInfo["id"]);
@@ -492,6 +503,15 @@ XMLscene.prototype.logPicking = function ()
 					makeRequest();
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
+				//@Apu
+				//this.nodesList[this.indexNode("13n")]["texture"] = null;
+				//	console.log(this.indexNode(customId));
+				//	console.log(this.nodesList);
+				//	this.nodesList[this.indexNode(customId)]["texture"] =null;
+				//	this.nodesList[0]["texture"] =null;
+				console.log(this.indexNode(customId));
+				this.nodesList[this.indexNode(customId)]["texture"] =null;
+				
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
