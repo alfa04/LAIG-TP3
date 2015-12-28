@@ -24,6 +24,7 @@ XMLscene.prototype.init = function (application) {
     this.animationsList = [];
     this.nodesList = [];
     this.queensList = [];
+    this.kingsList = [];
 
     this.map = [['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']];
 
@@ -248,6 +249,17 @@ XMLscene.prototype.display = function () {
         	
             this.pushMatrix();
         	queen.display();    
+            this.popMatrix();
+        }
+
+         //kings
+
+        for(var i = 0; i < this.kingsList.length; i++){
+        
+        	var king = this.kingsList[i];
+        	
+            this.pushMatrix();
+        	king.display();    
             this.popMatrix();
         }
 
@@ -586,7 +598,8 @@ XMLscene.prototype.transformBoard = function(){
 			}
 
 			else if(this.map[i][j] == '+' || this.map[i][j] == '*'){
-				//call new rei
+				var k = new King(this,[i,j]);
+				this.kingsList.push(k);
 			}
 
 		}
