@@ -28,7 +28,7 @@ XMLscene.prototype.init = function (application) {
 
 
     this.timeNow = new Date().getTime();
-
+    this.q = new Queen(this,[1,2]);
 	
 	//this.setUpdatePeriod(10);
 	this.setPickEnabled(true);
@@ -269,7 +269,9 @@ XMLscene.prototype.setLeaves = function() {
                 this.leaveslist.push(cylinder);
                 break;
             case "sphere":
-                sphere = new sphere(this, leaf.args[0]);
+                sphere = new Sphere(this, leaf.args[0]);
+                console.log("SPHERE----");
+			    console.log(leaf.args[0]);
                 sphere.id = leaf.id;
                 this.leaveslist.push(sphere);
                 break;
@@ -287,7 +289,8 @@ XMLscene.prototype.setLeaves = function() {
 			 	console.log("PATCHHHH----");
 			    console.log(leaf.args);
 			    console.log("/PATCHHHH----");
-                patch1 = new patch(this,leaf.args);
+                //patch1 = new patch(this,leaf.args);
+                patch1 = new Queen (this, [1,2]);
                 patch1.id = leaf.id;
                 this.leaveslist.push(patch1);
                 break;
@@ -297,6 +300,11 @@ XMLscene.prototype.setLeaves = function() {
                 terrain.id = leaf.id;
                 this.leaveslist.push(terrain);
                 break;
+                case "queen":
+                queen1 = new Queen (this, [1,2]);
+                queen1.id = leaf.id;
+                this.leaveslist.push(queen1);
+                break;
         }
 	}
 };
@@ -305,15 +313,6 @@ XMLscene.prototype.findNode = function(id) {
 	for(var i = 0; i<this.graph.nodesList.length; i++){
 		if(this.graph.nodesList[i].id == id){
 			return this.graph.nodesList[i];
-		}
-
-	}
-
-};
-XMLscene.prototype.indexNode = function(id) {
-	for(var i = 0; i<this.nodesList.length; i++){
-		if(this.nodesList[i].id == id){
-			return i;
 		}
 
 	}
@@ -493,14 +492,6 @@ XMLscene.prototype.logPicking = function ()
 					makeRequest();
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
-					//this.nodesList[this.indexNode("13n")]["texture"] = null;
-				//	console.log(this.indexNode(customId));
-				//	console.log(this.nodesList);
-				//	this.nodesList[this.indexNode(customId)]["texture"] =null;
-				//	this.nodesList[0]["texture"] =null;
-				console.log(this.indexNode(customId));
-				this.nodesList[this.indexNode(customId)]["texture"] =null;
-				
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);

@@ -1,4 +1,4 @@
-	function sphere(scene, args, s, t) {
+function Sphere(scene, args, s, t) {
  	CGFobject.call(this,scene);
 	
 	this.radius = args[0];
@@ -11,10 +11,10 @@
  	this.initBuffers();
  };
 
- sphere.prototype = Object.create(CGFobject.prototype);
- sphere.prototype.constructor = sphere;
+ Sphere.prototype = Object.create(CGFobject.prototype);
+ Sphere.prototype.constructor = Sphere;
 
- sphere.prototype.initBuffers = function() {
+ Sphere.prototype.initBuffers = function() {
 
 	this.vertices = [];
 	this.indices = [];
@@ -101,5 +101,5 @@
  	this.initGLBuffers();
  	
  };
-sphere.prototype.updateTex = function(S, T) {
+Sphere.prototype.updateTex = function(S, T) {
 };

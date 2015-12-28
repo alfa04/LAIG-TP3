@@ -547,7 +547,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 
 	var leafInfo = new Leaf (leaf[i].getAttribute('id'));
 
-	leafInfo.type= this.reader.getItem(leaf[i], "type", ['patch','plane','rectangle', 'cylinder', 'sphere', 'triangle','patch', 'terrain']);
+	leafInfo.type= this.reader.getItem(leaf[i], "type", ['queen','patch','plane','rectangle', 'cylinder', 'sphere', 'triangle','patch', 'terrain']);
 
 	if(leafInfo.type == "rectangle"){
 		leafInfo.args.push(this.reader.getRGBA(leaf[i], "args"));

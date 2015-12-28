@@ -164,8 +164,10 @@
     <LEAF id="86" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="87" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="88" type="rectangle" args="0.0 1.0 1.0 0.0" />
+
     <LEAF id="sphereHead" type="sphere" args="1.0 20 20" />
-    <LEAF id="cylinderStick" type="cylinder" args="0.4 1.2 1.2 20 8" /> 
+    <LEAF id="rainhaleaf" type="queen" /> 
+   
     
     
     <!-- <LEAF id="triangle2" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
@@ -194,7 +196,7 @@
             <controlpoint x="0" y="-1" z="1" />
 </LEAF>
 -->
-    <LEAF id="rainhatopo" type="patch" order="3" partsU="10" partsV="10" >
+    <!-- <LEAF id="rainhatopo" type="patch" order="3" partsU="10" partsV="10" >
             <controlpoint x="0" y="0" z="3" />
             <controlpoint x="-2" y="0" z="3" />
             <controlpoint x="-1.5" y="0" z="2" />
@@ -285,7 +287,7 @@
             <controlpoint x="1.5" y="0" z="2" />
             <controlpoint x="0.5" y="0" z="0" />
             
-    </LEAF>
+    </LEAF>-->
 
 </LEAVES>
 
@@ -963,20 +965,21 @@
         <MATERIAL id="body" /> 
         <TEXTURE id="body" />  
 
-        <SCALE sx="0.2" sy="0.2" sz="0.2" />
-        <TRANSLATION x="2" y="2" z="3" /> 
+       <!-- <SCALE sx="0.2" sy="0.2" sz="0.2" />
+        <TRANSLATION x="2" y="2" z="3" /> -->
 
         <DESCENDANTS>
-          <DESCENDANT id="rainhatopoall" /> 
+        <DESCENDANT id="rainhaleaf" />
+          <!--<DESCENDANT id="rainhatopoall" /> 
           <DESCENDANT id="rainhacorpoall" /> 
           <DESCENDANT id="rainhacorpobaseall" /> 
-          <DESCENDANT id="base" />
+           <DESCENDANT id="base" /> --> 
         </DESCENDANTS>
 
     </NODE>
 
 
-     <NODE id="base">  
+   <!--  <NODE id="base">  
         <MATERIAL id="body" />
         <TEXTURE id="body" />     
         <TRANSLATION x="0" y="0" z="-3.3" /> 
@@ -991,7 +994,7 @@
       <TRANSLATION x="0" y="0" z="2.5" /> 
         <DESCENDANTS>     
             <DESCENDANT id="rainhatopoleaf" /> 
-            <DESCENDANT id="rainhatopo2" /> 
+            <!-- <DESCENDANT id="rainhatopo2" /> 
             <DESCENDANT id="sphere" /> 
         </DESCENDANTS>
 
@@ -1060,7 +1063,7 @@
         <DESCENDANTS>     
               <DESCENDANT id="rainhacorpobaseleaf" />  
         </DESCENDANTS>
-    </NODE>
+    </NODE> -->
 
    
      
