@@ -23,18 +23,20 @@ XMLscene.prototype.init = function (application) {
     this.materialsList = [];
     this.animationsList = [];
     this.nodesList = [];
+    this.queensList = [];
 
-    this.requestString = [];
+    this.map = [['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']];
 
 	this.axis=new CGFaxis(this);
 
 
     this.timeNow = new Date().getTime();
-    this.q = new Queen(this,[1,2]);
+  //  this.q = new Queen(this,[5,5]);
 	
 	//this.setUpdatePeriod(10);
 	this.setPickEnabled(true);
 	//this.interface.menu();
+	this.transformBoard();
 
 };
 
@@ -177,6 +179,8 @@ XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
  	this.logPicking();
 	this.clearPickRegistration();
+	
+	//console.log(this.map.length + "aqui");
 	// Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -198,15 +202,16 @@ XMLscene.prototype.display = function () {
 	if (this.graph.loadedOk)
 	{
 
+		
 		// Draw axis
 		this.axis.display();
-	
 
 		this.setDefaultAppearance();
 
+		
         // setInitials transformations
         this.setInitials();
-
+      //  this.q.display();
 		//Lights
         for (var i = 0; i < this.lights.length; i++)
             this.lights[i].update();
@@ -233,6 +238,21 @@ XMLscene.prototype.display = function () {
             node["primitive"].display();
             this.popMatrix();
         }
+
+
+        //queens
+
+        for(var i = 0; i < this.queensList.length; i++){
+        
+        	var queen = this.queensList[i];
+        	
+            this.pushMatrix();
+        	queen.display();    
+            this.popMatrix();
+        }
+
+
+        
 	}
 
 };
@@ -524,7 +544,7 @@ XMLscene.prototype.logPicking = function ()
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
 	}
-}
+};
 
 function getPrologRequest(requestString, onSuccess, onError, port)
 {
@@ -537,37 +557,41 @@ function getPrologRequest(requestString, onSuccess, onError, port)
 
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 	request.send();
-}
+};
 
 function makeRequest()
 {
 	// Get Parameter Values
-	this.requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	
+	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 	// Make Request
-	getPrologRequest(this.requestString, handleReply);
+	getPrologRequest(requestString, handleReply);
 
-}
+};
 
 //Handle the Reply
 function handleReply(data){
 	console.log(data.target.response);
 	document.querySelector("#query_result").innerHTML=data.target.response;
-}
+};
 
-function transformBoard(){
+XMLscene.prototype.transformBoard = function(){
 
-	for (var i=0; i< this.requestString.length; i++) {
+	for (var i=0; i< this.map.length; i++) {
+		for (var j=0; j< this.map[i].length; j++) {
 
-		if(resquestString[i] == '$' || resquestString[i] == '&'){
-			//call new rainha
+			//console.log(this.map[i][j] + "aqui");
+			if(this.map[i][j] == '$' || this.map[i][j] == '&'){
+				var q = new Queen(this,[i,j]);
+				this.queensList.push(q);
+			}
+
+			else if(this.map[i][j] == '+' || this.map[i][j] == '*'){
+				//call new rei
+			}
+
 		}
-
-		else if(resquestString[i] == '+' || resquestString[i] == '*'){
-			//call new rei
-		}
-
-
 
 	}
-}
+};
+
+

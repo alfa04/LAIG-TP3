@@ -30,6 +30,10 @@ Queen.prototype.constructor = Queen;
 Queen.prototype.display = function () {
     this.scene.pushMatrix();
 
+    this.scene.translate(this.x, 0, this.y);
+    this.scene.rotate(-90 * degToRad, 1, 0, 0);
+    this.scene.translate(0, -1, 0);
+
     this.scene.scale(0.2,0.2,0.2);
     this.scene.translate(2,2,3);
 
@@ -73,11 +77,10 @@ Queen.prototype.display = function () {
     this.scene.pushMatrix();
     this.scene.translate(0, 0, 5.9);
     this.scene.scale(0.5,0.5,0.5);
+    
     this.head.display();
+
     this.scene.popMatrix();
-
-
-
 
     this.scene.popMatrix();
 

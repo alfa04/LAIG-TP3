@@ -1,6 +1,6 @@
 function patch(scene,args){
 	
-	console.log(args);
+	//console.log(args);
 	this.args=args;
     this.order = this.args[0];
     this.partsU = this.args[1];
@@ -17,10 +17,10 @@ function patch(scene,args){
 		console.error("Only order between 1 and 3");
 		return;
 	}
-	console.log(this.order);
+	/*console.log(this.order);
 	console.log(this.partsU);
 	console.log(this.partsV);
-	console.log(this.controlPoints);
+	console.log(this.controlPoints);*/
 	
 	var nurbsSurface = new CGFnurbsSurface(this.order, this.order, knots, knots, this.controlPoints);
 	getSurfacePoint = function(u, v) {
