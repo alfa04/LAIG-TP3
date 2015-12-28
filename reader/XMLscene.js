@@ -24,6 +24,8 @@ XMLscene.prototype.init = function (application) {
     this.animationsList = [];
     this.nodesList = [];
 
+    this.requestString = [];
+
 	this.axis=new CGFaxis(this);
 
 
@@ -535,10 +537,10 @@ function getPrologRequest(requestString, onSuccess, onError, port)
 function makeRequest()
 {
 	// Get Parameter Values
-	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
+	this.requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 	
 	// Make Request
-	getPrologRequest(requestString, handleReply);
+	getPrologRequest(this.requestString, handleReply);
 
 }
 
@@ -546,4 +548,21 @@ function makeRequest()
 function handleReply(data){
 	console.log(data.target.response);
 	document.querySelector("#query_result").innerHTML=data.target.response;
+}
+
+function transformBoard(){
+
+	for (var i=0; i< this.requestString.length; i++) {
+
+		if(resquestString[i] == '$' || resquestString[i] == '&'){
+			//call new rainha
+		}
+
+		else if(resquestString[i] == '+' || resquestString[i] == '*'){
+			//call new rei
+		}
+
+
+
+	}
 }
