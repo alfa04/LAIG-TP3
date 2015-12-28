@@ -167,7 +167,7 @@
 
     <LEAF id="sphereHead" type="sphere" args="1.0 20 20" />
     <LEAF id="rainhaleaf" type="queen" /> 
-   
+    <LEAF id="reileaf" type="king" /> 
     
     
     <!-- <LEAF id="triangle2" type="triangle" args="0.0 0.0 3.0  0.35 0.0 0.0  -0.35 0.0 0.0" />
@@ -966,7 +966,7 @@
         <TRANSLATION x="2" y="2" z="3" /> -->
 
         <DESCENDANTS>
-        <DESCENDANT id="rainhaleaf" />
+        <DESCENDANT id="reileaf" />
           <!--<DESCENDANT id="rainhatopoall" /> 
           <DESCENDANT id="rainhacorpoall" /> 
           <DESCENDANT id="rainhacorpobaseall" /> 

@@ -302,10 +302,15 @@ XMLscene.prototype.setLeaves = function() {
                 terrain.id = leaf.id;
                 this.leaveslist.push(terrain);
                 break;
-                case "queen":
+            case "queen":
                 queen1 = new Queen (this, [1,2]);
                 queen1.id = leaf.id;
                 this.leaveslist.push(queen1);
+                break;
+            case "king":
+                king1 = new King (this, [1,2]);
+                king1.id = leaf.id;
+                this.leaveslist.push(king1);
                 break;
         }
 	}
