@@ -35,7 +35,8 @@ XMLscene.prototype.init = function (application) {
 	this.yi;
 	this.yf;
     this.map = [['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']];
-
+	this.player = 1;
+	this.turns = 10;
 	this.axis=new CGFaxis(this);
 
 
@@ -567,6 +568,7 @@ XMLscene.prototype.logPicking = function ()
 				this.nodesList[this.indexNode(customId)]["texture"] =null;
 				if(this.piece1 == 1){
 					this.xf = Math.floor(customId/10) - 1;
+
 					this.yf = customId % 10;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
 					this.texture2 = this.temptex;
@@ -581,7 +583,7 @@ XMLscene.prototype.logPicking = function ()
 				this.texture1 = this.temptex;
 				this.id1 = customId;
 				this.xi = Math.floor(customId/10) - 1;
-				this.yi = customId % 10;
+				this.yi = customId % 10 - 1;
 				}
 				}
 			}
@@ -602,13 +604,25 @@ XMLscene.prototype.getPrologRequest = function (requestString, onSuccess, onErro
 	request.send();
 };
 
-XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
-{
-	// Get Parameter Values
-	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	// Make Request
-	this.getPrologRequest(requestString, this.handleReply);
 
+XMLscene.prototype.makeRequest = function(player,turns,map,xi,yi,xf,yf)
+
+{
+	// Gt Parameter Values
+	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)"
+	// Make Request
+
+	var requestString = "pvpgame(" + player + ","+ map +"," +turns + ","+ xi +"," +yi+","+xf+","+yf+")";
+	console.log(requestString);
+	this.getPrologRequest(requestString, handleReply);
+
+};
+
+//Handle the Reply
+function handleReply(data){
+	console.log(data.target.response);
+	
+	document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
 XMLscene.prototype.transformBoard = function(){

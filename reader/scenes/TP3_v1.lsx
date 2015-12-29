@@ -163,7 +163,7 @@
     <LEAF id="85" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="86" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="87" type="rectangle" args="0.0 1.0 1.0 0.0" />
-    <LEAF id="89" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="88" type="rectangle" args="0.0 1.0 1.0 0.0" />
 <LEAF id="90" type="rectangle" args="0.0 0.0 0.0 0.0" />
 
 
@@ -957,7 +957,7 @@
         <TEXTURE id="squarewhite" />     
         <TRANSLATION x="7" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="89" />
+            <DESCENDANT id="88" />
         </DESCENDANTS>
     </NODE>
 <NODE id="89n">  
