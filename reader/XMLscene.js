@@ -25,7 +25,15 @@ XMLscene.prototype.init = function (application) {
     this.nodesList = [];
     this.queensList = [];
     this.kingsList = [];
-
+	this.piece1 = 0;
+	this.texture1;
+	this.texture2;
+	this.id1;
+	this.id2;
+	this.xi;
+	this.xf;
+	this.yi;
+	this.yf;
     this.map = [['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']];
 
 	this.axis=new CGFaxis(this);
@@ -35,9 +43,10 @@ XMLscene.prototype.init = function (application) {
   //  this.q = new Queen(this,[5,5]);
 	
 	//this.setUpdatePeriod(10);
-	this.setPickEnabled(true);
+	
 	//this.interface.menu();
 	this.transformBoard();
+	this.setPickEnabled(true);
 
 };
 
@@ -235,7 +244,8 @@ XMLscene.prototype.display = function () {
             node["material"].apply();
             this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
-            //console.log(node["id"]);
+
+          //  console.log(node["primitive"]);
             node["primitive"].display();
             this.popMatrix();
         }
@@ -246,9 +256,10 @@ XMLscene.prototype.display = function () {
         for(var i = 0; i < this.queensList.length; i++){
         
         	var queen = this.queensList[i];
-        	
+        	var inter = "dont"
             this.pushMatrix();
-        	queen.display();    
+            this.registerForPick(inter, queen);
+        	queen.display(); 
             this.popMatrix();
         }
 
@@ -366,6 +377,7 @@ XMLscene.prototype.indexNode = function(id) {
 		}
 
 	}
+	return -1;
 
 };
 
@@ -539,7 +551,7 @@ XMLscene.prototype.logPicking = function ()
 				if (obj)
 				{
 					console.log(obj);
-					makeRequest();
+					
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
 				//@Apu
@@ -548,9 +560,27 @@ XMLscene.prototype.logPicking = function ()
 				//	console.log(this.nodesList);
 				//	this.nodesList[this.indexNode(customId)]["texture"] =null;
 				//	this.nodesList[0]["texture"] =null;
-				console.log(this.indexNode(customId));
+				console.log(this.piece1);
+				this.temptex = this.nodesList[this.indexNode(customId)]["texture"];
 				this.nodesList[this.indexNode(customId)]["texture"] =null;
-				
+				if(this.piece1 == 1){
+					this.xf = Math.floor(customId/10) - 1;
+					this.yf = customId % 10;
+					makeRequest(this.xi,this.yi,this.xf,this.yf);
+					this.texture2 = this.temptex;
+					this.piece1 = 0;
+					this.id2 = customId;
+					this.nodesList[this.indexNode(this.id1)]["texture"] =this.texture1;
+					this.nodesList[this.indexNode(this.id2)]["texture"] =this.texture2;
+		
+				}
+				else{
+				this.piece1 = 1;
+				this.texture1 = this.temptex;
+				this.id1 = customId;
+				this.xi = Math.floor(customId/10) - 1;
+				this.yi = customId % 10;
+				}
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
@@ -566,12 +596,11 @@ function getPrologRequest(requestString, onSuccess, onError, port)
 
 	request.onload = onSuccess || function(data){console.log("Request successful. Reply: " + data.target.response);};
 	request.onerror = onError || function(){console.log("Error waiting for response");};
-
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 	request.send();
 };
 
-function makeRequest()
+function makeRequest(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
@@ -583,6 +612,9 @@ function makeRequest()
 //Handle the Reply
 function handleReply(data){
 	console.log(data.target.response);
+	console.log(this.id1);
+	console.log(this.texture1);
+	
 	document.querySelector("#query_result").innerHTML=data.target.response;
 };
 

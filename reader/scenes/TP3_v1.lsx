@@ -163,7 +163,9 @@
     <LEAF id="85" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="86" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="87" type="rectangle" args="0.0 1.0 1.0 0.0" />
-    <LEAF id="88" type="rectangle" args="0.0 1.0 1.0 0.0" />
+    <LEAF id="89" type="rectangle" args="0.0 1.0 1.0 0.0" />
+<LEAF id="90" type="rectangle" args="0.0 0.0 0.0 0.0" />
+
 
     <LEAF id="sphereHead" type="sphere" args="1.0 20 20" />
     <LEAF id="rainhaleaf" type="queen" /> 
@@ -378,6 +380,7 @@
             <DESCENDANT id="86n" />
             <DESCENDANT id="87n" />
             <DESCENDANT id="88n" />
+	    <DESCENDANT id="89n" />	
         </DESCENDANTS>
 
     </NODE>
@@ -954,7 +957,15 @@
         <TEXTURE id="squarewhite" />     
         <TRANSLATION x="7" y="7" z="0" /> 
         <DESCENDANTS>     
-            <DESCENDANT id="88" />
+            <DESCENDANT id="89" />
+        </DESCENDANTS>
+    </NODE>
+<NODE id="89n">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />     
+        <TRANSLATION x="7" y="7" z="0" /> 
+        <DESCENDANTS>     
+            <DESCENDANT id="90" />
         </DESCENDANTS>
     </NODE>
 
