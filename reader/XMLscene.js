@@ -278,6 +278,8 @@ XMLscene.prototype.display = function () {
         
 	}
 
+	this.transformBoard();
+
 };
 
 XMLscene.prototype.setInitials = function() {
@@ -566,7 +568,7 @@ XMLscene.prototype.logPicking = function ()
 				if(this.piece1 == 1){
 					this.xf = Math.floor(customId/10) - 1;
 					this.yf = customId % 10;
-					makeRequest(this.xi,this.yi,this.xf,this.yf);
+					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
 					this.id2 = customId;
@@ -588,7 +590,7 @@ XMLscene.prototype.logPicking = function ()
 	}
 };
 
-function getPrologRequest(requestString, onSuccess, onError, port)
+XMLscene.prototype.getPrologRequest = function (requestString, onSuccess, onError, port)
 {
 	var requestPort = port || 8081
 	var request = new XMLHttpRequest();
@@ -600,22 +602,13 @@ function getPrologRequest(requestString, onSuccess, onError, port)
 	request.send();
 };
 
-function makeRequest(xi,yi,xf,yf)
+XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 	// Make Request
-	getPrologRequest(requestString, handleReply);
+	this.getPrologRequest(requestString, this.handleReply);
 
-};
-
-//Handle the Reply
-function handleReply(data){
-	console.log(data.target.response);
-	console.log(this.id1);
-	console.log(this.texture1);
-	
-	document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
 XMLscene.prototype.transformBoard = function(){
@@ -638,5 +631,17 @@ XMLscene.prototype.transformBoard = function(){
 
 	}
 };
+
+//Handle the Reply
+XMLscene.prototype.handleReply = function(data){
+	console.log(data.target.response);
+	console.log(this.id1);
+	console.log(this.texture1);
+	this.map = data.target.response;
+	
+	//document.querySelector("#query_result").innerHTML=data.target.response;
+};
+
+
 
 
