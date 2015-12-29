@@ -34,7 +34,7 @@ XMLscene.prototype.init = function (application) {
 	this.xf;
 	this.yi;
 	this.yf;
-    this.map = [['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']];
+    this.map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
 	this.player = 1;
 	this.turns = 10;
 	this.axis=new CGFaxis(this);
@@ -610,7 +610,11 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
+	console.log("MAPPPP"+this.map);
+	//absoluto para já a move
+	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
+	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ 4 +"," +3+","+4+","+4+")";
+
 	console.log(requestString);
 	// Make Request
 	this.getPrologRequest(requestString, this.handleReply);
@@ -619,12 +623,30 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 
 XMLscene.prototype.transformBoard = function(){
 
-	for (var i=0; i< this.map.length; i++) {
-		for (var j=0; j< this.map[i].length; j++) {
+	var aux = this.map.split("");
+	console.log(aux);
 
-			//console.log(this.map[i][j] + "aqui");
-			if(this.map[i][j] == '$'){
-				var q = new Queen(this,[i,j]);
+	var mappieces = [];
+	var x = 0;
+	var y = 0;
+		
+	for(var k=0; k< aux.length;k++){
+		if(aux[k]=='$'||aux[k]=='&'||aux[k]=='+'||aux[k]=='*'||aux[k]==' ')
+		{
+			mappieces.push(aux[k]);
+		}
+	}
+
+	console.log("MapPieces");
+	console.log(mappieces);	
+		
+	console.log(this.map);
+
+	for (var i=0; i< mappieces.length; i++) {
+
+		//console.log(this.map[i][j] + "aqui");
+			if(mappieces[i] == '$'){
+				var q = new Queen(this,[x,y]);
 				var queen = [];
 				queen["texture"] = new CGFtexture(this, "scenes/textures/green.jpg");
 			    queen["material"] = this.materialsList[0];
@@ -635,8 +657,8 @@ XMLscene.prototype.transformBoard = function(){
 
 			}
 
-			else if(this.map[i][j] == '&'){
-				var q = new Queen(this,[i,j]);
+			else if(mappieces[i] == '&'){
+				var q = new Queen(this,[x,y]);
 				var queen = [];
 				queen["texture"] = new CGFtexture(this, "scenes/textures/blue.jpg");
 			    queen["material"] = this.materialsList[0];
@@ -647,8 +669,8 @@ XMLscene.prototype.transformBoard = function(){
 
 			}
 
-			else if(this.map[i][j] == '+'){
-				var k = new King(this,[i,j]);
+			else if(mappieces[i] == '+'){
+				var k = new King(this,[x,y]);
 				var king = [];
 				king["texture"] = new CGFtexture(this, "scenes/textures/golden.jpg");
 			    king["material"] = this.materialsList[0];
@@ -658,8 +680,8 @@ XMLscene.prototype.transformBoard = function(){
 				this.nodesList.push(king);
 			}
 
-			else if(this.map[i][j] == '*'){
-				var k = new King(this,[i,j]);
+			else if(mappieces[i] == '*'){
+				var k = new King(this,[x,y]);
 				var king = [];
 				king["texture"] = new CGFtexture(this, "scenes/textures/golden2.jpg");
 			    king["material"] = this.materialsList[0];
@@ -669,9 +691,16 @@ XMLscene.prototype.transformBoard = function(){
 				this.nodesList.push(king);
 			}
 
-		}
 
+		y = y + 1;
+
+		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
+		{
+			x = x + 1;
+			y = 0;
+		}
 	}
+
 };
 
 //Handle the Reply
@@ -679,6 +708,8 @@ XMLscene.prototype.handleReply = function(data){
 	console.log(data.target.response);
 	console.log(this.id1);
 	console.log(this.texture1);
+	console.log("Responseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+	console.log(data.target.response);
 	this.map = data.target.response;
 	
 	//document.querySelector("#query_result").innerHTML=data.target.response;
