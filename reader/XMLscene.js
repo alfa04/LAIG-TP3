@@ -611,7 +611,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 	console.log("MAPPPP"+this.map);
-	//absoluto para já a move
+	//absoluto para já a move porque nem todas dão
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
 	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ 4 +"," +3+","+4+","+4+")";
 
