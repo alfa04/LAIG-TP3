@@ -46,7 +46,6 @@ XMLscene.prototype.init = function (application) {
 	//this.setUpdatePeriod(10);
 	
 	//this.interface.menu();
-	this.transformBoard();
 	this.setPickEnabled(true);
 
 };
@@ -184,6 +183,8 @@ XMLscene.prototype.onGraphLoaded = function ()
     this.setAnimation();
 
     this.fixAnims();
+
+	this.transformBoard();
 };
 
 XMLscene.prototype.display = function () {
@@ -232,7 +233,7 @@ XMLscene.prototype.display = function () {
         for(var i = 0; i < this.nodesList.length; i++){
         
         	var node = this.nodesList[i];
-        	//console.log(node);
+        	//console.log(node["texture"]);
             this.pushMatrix();
             node["material"].setTexture(node["texture"]);
             if (node["texture"] != null) {
@@ -243,7 +244,8 @@ XMLscene.prototype.display = function () {
             	this.multMatrix(node["animationref"].matrix);
 			}
             node["material"].apply();
-            this.multMatrix(node["matrix"]);
+            if(node["id"] != "queen" && node["id"] != "king")
+            	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
 
           //  console.log(node["primitive"]);
@@ -279,7 +281,7 @@ XMLscene.prototype.display = function () {
         
 	}
 
-	this.transformBoard();
+//	this.transformBoard();
 
 };
 
@@ -621,14 +623,50 @@ XMLscene.prototype.transformBoard = function(){
 		for (var j=0; j< this.map[i].length; j++) {
 
 			//console.log(this.map[i][j] + "aqui");
-			if(this.map[i][j] == '$' || this.map[i][j] == '&'){
+			if(this.map[i][j] == '$'){
 				var q = new Queen(this,[i,j]);
-				this.queensList.push(q);
+				var queen = [];
+				queen["texture"] = new CGFtexture(this, "scenes/textures/green.jpg");
+			    queen["material"] = this.materialsList[0];
+			    queen["animationref"] = null;
+			    queen["primitive"] = q;
+			    queen["id"] = "queen";
+				this.nodesList.push(queen);
+
 			}
 
-			else if(this.map[i][j] == '+' || this.map[i][j] == '*'){
+			else if(this.map[i][j] == '&'){
+				var q = new Queen(this,[i,j]);
+				var queen = [];
+				queen["texture"] = new CGFtexture(this, "scenes/textures/blue.jpg");
+			    queen["material"] = this.materialsList[0];
+			    queen["animationref"] = null;
+			    queen["primitive"] = q;
+			    queen["id"] = "queen";
+				this.nodesList.push(queen);
+
+			}
+
+			else if(this.map[i][j] == '+'){
 				var k = new King(this,[i,j]);
-				this.kingsList.push(k);
+				var king = [];
+				king["texture"] = new CGFtexture(this, "scenes/textures/golden.jpg");
+			    king["material"] = this.materialsList[0];
+			    king["animationref"] = null;
+			    king["primitive"] = k;
+			    king["id"] = "king";
+				this.nodesList.push(king);
+			}
+
+			else if(this.map[i][j] == '*'){
+				var k = new King(this,[i,j]);
+				var king = [];
+				king["texture"] = new CGFtexture(this, "scenes/textures/golden2.jpg");
+			    king["material"] = this.materialsList[0];
+			    king["animationref"] = null;
+			    king["primitive"] = k;
+			    king["id"] = "king";
+				this.nodesList.push(king);
 			}
 
 		}

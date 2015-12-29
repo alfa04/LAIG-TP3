@@ -44,10 +44,6 @@
 </LIGHTS>
 
 <TEXTURES>
-    <TEXTURE id="body">
-        <file path="textures/wood.jpg" />                             <!-- path to file -->
-        <amplif_factor s="2.0" t="2.0" />                <!-- x/s, y/t -->
-    </TEXTURE>
     <TEXTURE id="squareblack">
         <file path="textures/squareblack.jpeg" />                             <!-- path to file -->
         <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
@@ -300,7 +296,7 @@
     <NODE id="scene">
 
         <MATERIAL id="body" />
-        <TEXTURE id="body" />       
+        <TEXTURE id="squarewhite" />       
   
         <DESCENDANTS> 
             <DESCENDANT id="tabuleiro" />
@@ -310,7 +306,7 @@
 
     <NODE id="tabuleiro">  
         <MATERIAL id="body" />
-        <TEXTURE id="body" />     
+        <TEXTURE id="squarewhite" />     
 
         <ROTATION axis="x" angle="-90.0" />
         <TRANSLATION x="0" y="-8" z="0" /> 

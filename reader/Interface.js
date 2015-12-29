@@ -7,8 +7,6 @@ Interface.prototype.constructor = Interface;
 
 Interface.prototype.init = function(application) {
     CGFinterface.prototype.init.call(this, application);
-    application.interface = this;
-    this.gui = new dat.GUI();  
 
     return true;
 };
@@ -16,6 +14,23 @@ Interface.prototype.init = function(application) {
 Interface.prototype.setScene = function(scene) {
     this.scene = scene;
     scene.interface = this;
+};
+
+
+Interface.prototype.menu = function() {
+
+    this.menu = new dat.GUI();
+
+    this.startMenu = this.menu.addFolder("New Game");
+    this.startMenu.add(this, 'newGame').name("New 12");
+   
+
+};
+
+Interface.prototype.newGame = function() {
+
+    this.scene.status = "newGame";
+
 };
 
 Interface.prototype.enableAnims = function() {
