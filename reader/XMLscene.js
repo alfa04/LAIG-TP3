@@ -281,7 +281,7 @@ XMLscene.prototype.display = function () {
         
 	}
 
-//	this.transformBoard();
+	//this.transformBoard();
 
 };
 
@@ -559,12 +559,7 @@ XMLscene.prototype.logPicking = function ()
 					
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
-				//@Apu
-				//this.nodesList[this.indexNode("13n")]["texture"] = null;
-				//	console.log(this.indexNode(customId));
-				//	console.log(this.nodesList);
-				//	this.nodesList[this.indexNode(customId)]["texture"] =null;
-				//	this.nodesList[0]["texture"] =null;
+				
 				console.log(this.piece1);
 				this.temptex = this.nodesList[this.indexNode(customId)]["texture"];
 				this.nodesList[this.indexNode(customId)]["texture"] =null;
@@ -611,7 +606,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 	console.log("MAPPPP"+this.map);
-	//absoluto para já a move porque nem todas dão
+	//absoluto para já a move
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
 	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ 4 +"," +3+","+4+","+4+")";
 
@@ -708,10 +703,24 @@ XMLscene.prototype.handleReply = function(data){
 	console.log(data.target.response);
 	console.log(this.id1);
 	console.log(this.texture1);
-	console.log("Responseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+	console.log("Resposta em bruto:");
+	var resposta = data.target.response.split("");
 	console.log(data.target.response);
-	this.map = data.target.response;
-	
+	// parse server response
+   
+    console.log('Código de resposta:' + resposta[1]);
+
+    // handle reply
+    switch(resposta[1]){
+      case '0':
+        this.map = data.target.response.slice(3);
+        console.log("Mapa após pedido: "+this.map);
+        break;
+      default:
+        console.log('erro no servidor');
+        break;
+    }
+   
 	//document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
