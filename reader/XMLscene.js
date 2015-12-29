@@ -610,7 +610,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	var requestString = "pvpgame(" + player + ","+ map +"," +turns + ","+ xi +"," +yi+","+xf+","+yf+")";
+	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
 	console.log(requestString);
 	// Make Request
 	this.getPrologRequest(requestString, this.handleReply);
