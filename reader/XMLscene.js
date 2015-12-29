@@ -570,7 +570,7 @@ XMLscene.prototype.logPicking = function ()
 				this.nodesList[this.indexNode(customId)]["texture"] =null;
 				if(this.piece1 == 1){
 					this.xf = Math.floor(customId/10) - 1;
-					this.yf = customId % 10;
+					this.yf = customId % 10 -1;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
@@ -610,10 +610,10 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	console.log("MAPPPP"+this.map);
+	console.log("XI:" + xi + " YI: " + yi + "XF: " + xf + "YF: " + yf);
 	//absoluto para já a move porque nem todas dão
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
-	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ 4 +"," +3+","+4+","+4+")";
+	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ yi +"," +xi+","+yf+","+xf+")";
 
 	console.log(requestString);
 	// Make Request
