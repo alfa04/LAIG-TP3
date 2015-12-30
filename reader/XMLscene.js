@@ -567,6 +567,9 @@ XMLscene.prototype.logPicking = function ()
 					this.xf = Math.floor(customId/10) - 1;
 					this.yf = customId % 10 -1;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
+
+				//	this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
+
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
 					this.id2 = customId;
@@ -726,6 +729,32 @@ XMLscene.prototype.handleReply = function(data){
     }
    
 	//document.querySelector("#query_result").innerHTML=data.target.response;
+};
+
+XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
+	console.log(xi + "x");
+
+	 for(var i = 0; i < this.nodesList.length; i++){
+        var node = this.nodesList[i];
+        if(node["id"] == "queen" || node["id"] == "king"){
+        	if(node["primitive"].x == xi && node["primitive"].y == yi){
+        		console.log(node["primitive"].x);
+
+        		var cp = [];
+        		cp.push(xf);
+        		cp.push(yf);
+        		cp.push(0);
+        		console.log(cp + "terceiro");
+        		var animation = new LinearAnimation("movePiece", 5, cp);
+				animation["type"] = 'linear';
+				node["animationref"] = "movePiece";
+				this.animationsList.push(animation);
+			}
+
+        }
+
+    }
+
 };
 
 

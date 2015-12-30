@@ -713,7 +713,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 				translationInfoTmp.push(this.reader.getFloat(translationInfo, "x", true));
 				translationInfoTmp.push(this.reader.getFloat(translationInfo, "y", true));
 				translationInfoTmp.push(this.reader.getFloat(translationInfo, "z", true));
-				console.log("\t\tTRANSLATION: " + this.translationInfoTmp + "\n");
+				console.log("\t\tTRANSLATION: " + translationInfoTmp + "\n");
 				mat4.translate(myNode.matrix, myNode.matrix, translationInfoTmp);
 				transformations.push(translationInfoTmp);	
 			}
