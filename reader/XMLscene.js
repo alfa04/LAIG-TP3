@@ -5,7 +5,8 @@ function XMLscene() {
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
-
+var tempplayer = 1;
+var tempturns = 10;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
@@ -616,7 +617,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 	//absoluto para já a move
 
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
-	var requestString = "pvpgame(" + this.player + ","+ this.map +"," +10 + ","+ yi +"," +xi+","+yf+","+xf+")";
+	var requestString = "pvpgame(" + tempplayer + ","+ this.map +"," +tempturns + ","+ yi +"," +xi+","+yf+","+xf+")";
 
 	console.log(requestString);
 	// Make Request
@@ -716,12 +717,17 @@ XMLscene.prototype.handleReply = function(data){
 	// parse server response
    
     console.log('Código de resposta:' + resposta[1]);
-
+	
     // handle reply
     switch(resposta[1]){
       case '0':
         this.map = data.target.response.slice(3);
         console.log("Mapa após pedido: "+this.map);
+       if(tempplayer == 1)
+        tempplayer = 2;
+		else
+		tempplayer = 1;
+		tempturns--;
         break;
       default:
         console.log('erro no servidor');
