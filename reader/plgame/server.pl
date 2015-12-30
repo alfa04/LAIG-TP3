@@ -108,7 +108,7 @@ print_header_line(_).
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).
 parse_input(play(X), done) :- play(X).
-parse_input(pvpgame(P,Board,Turns,Xi,Yi,Xf,Yf), [P,B3]) :- pvpgame(P,Board,Turns,Xi,Yi,Xf,Yf,B3).
+parse_input(pvpgame(P,Board,Turns,Xi,Yi,Xf,Yf), [0,B3]) :- pvpgame(P,Board,Turns,Xi,Yi,Xf,Yf,B3).
 parse_input(quit, goodbye).
 %pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)
 %play(pvp)
