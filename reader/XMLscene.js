@@ -7,6 +7,7 @@ XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
 var tempplayer = 1;
 var tempturns = 10;
+var map;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
@@ -35,7 +36,7 @@ XMLscene.prototype.init = function (application) {
 	this.xf;
 	this.yi;
 	this.yf;
-    this.map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
+    map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
 	this.player = 1;
 	this.turns = 10;
 	this.axis=new CGFaxis(this);
@@ -613,11 +614,11 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 	console.log("XI:" + xi + " YI: " + yi + "XF: " + xf + "YF: " + yf);
 	//absoluto para já a move porque nem todas dão
 
-	console.log("MAPPPP"+this.map);
+	//console.log("MAPPPP"+this.map);
 	//absoluto para já a move
 
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
-	var requestString = "pvpgame(" + tempplayer + ","+ this.map +"," +tempturns + ","+ yi +"," +xi+","+yf+","+xf+")";
+	var requestString = "pvpgame(" + tempplayer + ","+ map +"," +tempturns + ","+ yi +"," +xi+","+yf+","+xf+")";
 
 	console.log(requestString);
 	// Make Request
@@ -627,7 +628,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 
 XMLscene.prototype.transformBoard = function(){
 
-	var aux = this.map.split("");
+	var aux = map.split("");
 	console.log(aux);
 
 	var mappieces = [];
@@ -706,6 +707,12 @@ XMLscene.prototype.transformBoard = function(){
 	}
 
 };
+String.prototype.insert = function (index, string) {
+  if (index > 0)
+    return this.substring(0, index) + string + this.substring(index, this.length);
+  else
+    return string + this;
+};
 
 //Handle the Reply
 XMLscene.prototype.handleReply = function(data){
@@ -721,8 +728,54 @@ XMLscene.prototype.handleReply = function(data){
     // handle reply
     switch(resposta[1]){
       case '0':
-        this.map = data.target.response.slice(3);
-        console.log("Mapa após pedido: "+this.map);
+       	map = data.target.response.slice(3);
+       	map = map.substring(0, map.length - 1);
+       	var x=2;
+       	for(x=2;x<map.length;x++){
+       		if(map[x] != "," && map[x] != "]" && map[x] != "["){
+			if(map[x] != " "){
+       		map = map.insert(x,"'");
+			map = map.insert(x + 2,"'");
+			x += 3;
+			}
+			else{
+				map = map.insert(x,"''");
+				var t = map.substring(0,x+2);
+				var p = map.substring(x+3,map.length);
+				map = t+p;
+				x += 2;
+			}
+       		}
+       		if((map[x] == "[" && map[x+1] == ",") || (map[x] == "," && map[x+1] == "]") || (map[x] == "," && map[x+1] == ",")){
+       			map = map.insert(x + 1,"''");
+			//	var t = map.substring(0,x+2);
+			//	var p = map.substring(x+3,map.length);
+			//	map = t+p;
+				x += 2;
+       		}
+			/*
+			else{
+				if(map[x+1] != "]"){
+			map = map.insert(x,"'',");
+			var p =  map.substring(0, x+3);
+			var t = map.substring(x+5,map.length);
+			console.log(p);
+			console.log(t);
+			map=p+t;
+			x += 2;
+				}
+				else{
+			console.log(map);
+       		map = map.insert(x,"''");
+       		x += 2;
+				}
+			}
+       		}
+       		
+*/
+       		
+       	}
+        console.log("Mapa após pedido: "+map);
        if(tempplayer == 1)
         tempplayer = 2;
 		else
