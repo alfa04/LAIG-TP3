@@ -18,8 +18,7 @@ Interface.prototype.init = function(application) {
     this.cameras = this.menu.addFolder("Cameras");
     //cameras.open();
 
-    this.cameras.add(this.scene, 'cameraTopBlue').name("cam Top Blue");
-    this.cameras.add(this.scene, 'cameraTopGreen').name("cam Top Green");
+    this.cameras.add(this.scene, 'cameraTop').name("cam Top");
     this.cameras.add(this.scene, 'cameraGreen').name("cam Green");
     this.cameras.add(this.scene, 'cameraBlue').name("cam Blue");
     return true;
