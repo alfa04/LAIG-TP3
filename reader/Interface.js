@@ -1,3 +1,4 @@
+
 function Interface() {
     CGFinterface.call(this);
 };
@@ -8,6 +9,19 @@ Interface.prototype.constructor = Interface;
 Interface.prototype.init = function(application) {
     CGFinterface.prototype.init.call(this, application);
 
+
+    this.menu = new dat.GUI();
+
+    //this.startMenu = this.menu.addFolder("New Game");
+    //this.startMenu.add(this, 'newGame').name("New 12");
+    
+    this.cameras = this.menu.addFolder("Cameras");
+    //cameras.open();
+
+    this.cameras.add(this.scene, 'cameraTopBlue').name("cam Top Blue");
+    this.cameras.add(this.scene, 'cameraTopGreen').name("cam Top Green");
+    this.cameras.add(this.scene, 'cameraGreen').name("cam Green");
+    this.cameras.add(this.scene, 'cameraBlue').name("cam Blue");
     return true;
 };
 
@@ -16,16 +30,6 @@ Interface.prototype.setScene = function(scene) {
     scene.interface = this;
 };
 
-
-Interface.prototype.menu = function() {
-
-    this.menu = new dat.GUI();
-
-    this.startMenu = this.menu.addFolder("New Game");
-    this.startMenu.add(this, 'newGame').name("New 12");
-   
-
-};
 
 Interface.prototype.newGame = function() {
 
@@ -64,3 +68,5 @@ Interface.prototype.enableLights = function() {
 
     group.close();
 };
+
+

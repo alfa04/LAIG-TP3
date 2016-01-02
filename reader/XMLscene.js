@@ -45,7 +45,7 @@ XMLscene.prototype.init = function (application) {
     this.timeNow = new Date().getTime();
   //  this.q = new Queen(this,[5,5]);
 	
-	//this.setUpdatePeriod(10);
+	this.setUpdatePeriod(50);
 	
 	//this.interface.menu();
 	this.setPickEnabled(true);
@@ -81,7 +81,10 @@ XMLscene.prototype.initLights = function () {
 };
 
 XMLscene.prototype.initCameras = function () {
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(20, 12, 16), vec3.fromValues(0, 0, 0));
+    this.cameraDestination = [20,10,0];
+    this.cameraTransition = false;
+    this.camTransTime = 1000;
 };
 
 XMLscene.prototype.setDefaultAppearance = function () {
@@ -547,6 +550,27 @@ XMLscene.prototype.update = function(timeNow) {
            // console.log(step);
 		}
 	}
+	   if(this.cameraTransition) {
+        if(!this.camTransBeg) this.camTransBeg = timeNow;  //BEGINNING
+        else
+        {
+            var time_since_start = timeNow - this.camTransBeg;
+            if(time_since_start>=this.camTransTime) { //END
+                this.camera.setPosition(this.cameraDestination);
+                this.camTransBeg=null;
+                this.cameraTransition=false;
+            }
+            else {
+                var time_perc = time_since_start / this.camTransTime;
+                var new_pos = [this.cameraOrigin[0]+(this.transitionVec[0]*time_perc),
+                this.cameraOrigin[1]+(this.transitionVec[1]*time_perc),
+                this.cameraOrigin[2]+(this.transitionVec[2]*time_perc)];
+                this.camera.setPosition(new_pos);
+            }
+        }
+    }
+ //if(this.player == 1) this.cameraGreen();
+   //             else this.cameraGreen();
 };
 
 XMLscene.prototype.logPicking = function ()
@@ -816,6 +840,66 @@ XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
 
 };
 
+//Cameras
 
+XMLscene.prototype.cameraTopBlue = function() {
 
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [15,30,0];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
 
+XMLscene.prototype.cameraTopGreen = function() {
+	console.log("(cameraTopGreen)");
+        if(!this.cameraTransition) {
+        	this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [-0.01,27.5,0];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+   }
+};
+
+XMLscene.prototype.cameraBlue = function() {
+
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [20,10,0];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
+
+XMLscene.prototype.cameraGreen = function() {
+
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [-20,10,0];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
+XMLscene.prototype.calcTransition = function() {
+    this.transitionVec = [this.cameraDestination[0]-this.cameraOrigin[0],
+            this.cameraDestination[1]-this.cameraOrigin[1],
+            this.cameraDestination[2]-this.cameraOrigin[2]];
+
+    this.cameraTransition = true;
+};
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+};
+
+XMLscene.prototype.calcTransition = function() {
+    this.transitionVec = [this.cameraDestination[0]-this.cameraOrigin[0],
+            this.cameraDestination[1]-this.cameraOrigin[1],
+            this.cameraDestination[2]-this.cameraOrigin[2]];
+
+    this.cameraTransition = true;
+};
