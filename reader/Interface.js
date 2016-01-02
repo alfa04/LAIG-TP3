@@ -9,7 +9,7 @@ Interface.prototype.constructor = Interface;
 Interface.prototype.init = function(application) {
     CGFinterface.prototype.init.call(this, application);
 
-
+    application.interface = this;
     this.menu = new dat.GUI();
 
     //this.startMenu = this.menu.addFolder("New Game");
@@ -21,6 +21,8 @@ Interface.prototype.init = function(application) {
     this.cameras.add(this.scene, 'cameraTop').name("cam Top");
     this.cameras.add(this.scene, 'cameraGreen').name("cam Green");
     this.cameras.add(this.scene, 'cameraBlue').name("cam Blue");
+
+
     return true;
 };
 
@@ -51,9 +53,29 @@ Interface.prototype.enableAnims = function() {
 
     groupAnims.close();
 
-}
+};
 
-Interface.prototype.enableLights = function() {
+Interface.prototype.initLights = function() {
+    var lights_group = this.menu.addFolder("Lights");
+    lights_group.open();
+
+    var self = this;
+
+    /*
+     Create a button for every light with the light's id as the name
+     Every button has an event handler for when it's clicked so it updates the
+     respective light in the scene
+     */
+    for (bool in this.scene.lightsID) {
+        var handler = lights_group.add(this.scene.lightsID, bool);
+
+        handler.onChange(function(value) {
+            self.scene.switchLight(this.property, value);
+        });
+    }
+};
+
+/*Interface.prototype.enableLights = function() {
     var group = this.gui.addFolder("ON/OFF");
     group.open();
 
@@ -66,6 +88,6 @@ Interface.prototype.enableLights = function() {
     }
 
     group.close();
-};
+};*/
 
 
