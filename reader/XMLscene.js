@@ -615,6 +615,8 @@ XMLscene.prototype.logPicking = function ()
 				this.texture1 = this.temptex;
 				this.id1 = customId;
 				this.xi = Math.floor(customId/10) - 1;
+				console.log("LOGGG"+this.xi);
+
 				this.yi = customId % 10 - 1;
 				//this.yi = customId % 10;
 				}
@@ -680,7 +682,7 @@ XMLscene.prototype.transformBoard = function(){
 
 	for (var i=0; i< mappieces.length; i++) {
 
-		//console.log(this.map[i][j] + "aqui");
+		//console.log(x+"-"+y + "-aquiiiiiiiiii");
 			if(mappieces[i] == '$'){
 				var q = new Queen(this,[x,y]);
 				var queen = [];
@@ -735,7 +737,7 @@ XMLscene.prototype.transformBoard = function(){
 			x = x + 1;
 			y = 7;
 		}
-	}
+	}console.log(x+"-"+y + "-aquiiiiiiiiii");
 
 };
 
@@ -823,29 +825,53 @@ XMLscene.prototype.handleReply = function(data){
 };
 
 XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
-
+	var xi1 = 0;
 	 for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
         if(node["id"] == "queen" || node["id"] == "king"){
-        	if(xi == 0)
-        		xi = 7;
-        	else if(xi == 1)
-        		xi = 6;
-        	else if(xi == 2)
-        		xi = 5;
-        	else if(xi == 3)
-        		xi = 4;
-        	else if(xi == 4)
-        		xi = 3;
-        	else if(xi == 5)
-        		xi = 2;
-        	else if(xi == 6)
-        		xi = 1;
-        	else if(xi == 7)
-        		xi = 0;
+        	console.log("mod"+ (yi%2));
+        	console.log("xi"+ xi + "yi" + yi);
+        	if((yi%2)==1){
+        		
+	        	if(xi == 0)
+	        		xi1 = 7;
+	        	else if(xi == 1)
+	        		xi1 = 6;
+	        	else if(xi == 2)
+	        		xi1 = 5;
+	        	else if(xi == 3)
+	        		xi1 = 4;
+	        	else if(xi == 4)
+	        		xi1 = 3;
+	        	else if(xi == 5)
+	        		xi1 = 2;
+	        	else if(xi == 6)
+	        		xi1 = 1;
+	        	else if(xi == 7)
+	        		xi1 = 0;
+			}
+			else if((yi%2)==0)
+			{
+				if(xi == 0)
+	        		xi1 = 7;
+	        	else if(xi == 1)
+	        		xi1 = 6;
+	        	else if(xi == 2)
+	        		xi1 = 5;
+	        	else if(xi == 3)
+	        		xi1 = 4;	
+				else if(xi == 4)
+	        		xi1 = 3;
+	        	else if(xi == 5)
+	        		xi1 = 2;
+	        	else if(xi == 6)
+	        		xi1 = 1;
+	        	else if(xi == 7)
+	        		xi1 = 0;
+			}
 
 
-        	if(node["primitive"].x == xi && node["primitive"].y == yi){
+        	if(node["primitive"].x == xi1 && node["primitive"].y == yi){
         		console.log(xi + "xi, " + yi + "yi");
         		var cp = [];
         		cp[0] = [];
