@@ -10,7 +10,7 @@ function MySceneGraph(filename, scene) {
 	this.reader = new CGFXMLreader();
 
 
-
+	this.lights = [];
     this.leaveslist = [];
 
 	/*
@@ -228,105 +228,30 @@ MySceneGraph.prototype.parseIllumination= function(rootElement) {
 }
 
 //Parser LIGTHS
-MySceneGraph.prototype.parseLights= function(rootElement) {
 
+MySceneGraph.prototype.parseLights = function(rootElement) {
+    var lights_list = rootElement.getElementsByTagName('LIGHTS')[0];
+    if (lights_list == null) return "<LIGHTS> element is missing.";
 
-	console.log("LIGHTS: \n");
+    var lights = lights_list.getElementsByTagName('LIGHT');
+    for (i = 0; i < lights.length; i++) {
+        var light = new LightX(this.reader.getString(lights[i], 'id'));
+        light.enabled = this.reader.getBoolean(lights[i].getElementsByTagName('enable')[0], 'value');
+        light.ambient = this.parseColor(lights[i].getElementsByTagName('ambient')[0]);
+        light.diffuse = this.parseColor(lights[i].getElementsByTagName('diffuse')[0]);
+        light.specular = this.parseColor(lights[i].getElementsByTagName('specular')[0]);
 
-	this.lightsList = [];
+        var aux = lights[i].getElementsByTagName('position')[0];
+        light.position.x = this.reader.getFloat(aux, 'x');
+        light.position.y = this.reader.getFloat(aux, 'y');
+        light.position.z = this.reader.getFloat(aux, 'z');
+        light.position.w = this.reader.getFloat(aux, 'w');
 
-	var lights = rootElement.getElementsByTagName('LIGHTS');
-	if(lights == null) return "LIGHTS tag not found!";
+        this.lights.push(light);
+    }
 
-	var lightsInfo = lights[0];
-
-	var light = lightsInfo.getElementsByTagName('LIGHT');
-	if(light == null) return "LIGTH tag not found!";
-
-	for(var i = 0; i < light.length; i++){
-
-	var lightInfo = light[i];
-
-	var myLight = new Light(this.reader.getString(lightInfo, "id", true));
-
-	console.log("\tLIGHT id: " + myLight.id + "\n");
-	
-	//enable
-	var enable = lightInfo.getElementsByTagName('enable');
-	if(enable == null) return "enable tag not found!";
-
-	var enableInfo = enable[0];
-
-	myLight.enabled = this.reader.getItem(enableInfo, 'value', ['1','0']);
-
-	console.log("\tenable value: " + myLight.enabled + "\n");
-	
-	//position
-	var position = lightInfo.getElementsByTagName("position");
-	if(position == null) return "position not found!";
-
-	console.log("position: ");
-
-	var positionInfo = position[0];
-
-	myLight.position.x = this.reader.getFloat(positionInfo, "x", true);
-	myLight.position.y = this.reader.getFloat(positionInfo, "y", true);
-	myLight.position.z = this.reader.getFloat(positionInfo, "z", true);
-	myLight.position.w = this.reader.getFloat(positionInfo, "w", true);
-
-	console.log("\t\tX: " + myLight.position.x + ", Y: " + myLight.position.y + ", Z: " + myLight.position.z + ", W: " + myLight.position.w + "\n");
-
-	//ambient
-	var ambientLight = lightInfo.getElementsByTagName("ambient");
-	if(ambientLight == null) return "ambient not found!";
-
-	console.log("ambient: ");
-
-	var ambientLightInfo = ambientLight[0];
-
-	myLight.ambient.r = this.reader.getFloat(ambientLightInfo, "r", true);
-	myLight.ambient.g = this.reader.getFloat(ambientLightInfo, "g", true);
-	myLight.ambient.b = this.reader.getFloat(ambientLightInfo, "b", true);
-	myLight.ambient.a = this.reader.getFloat(ambientLightInfo, "a", true);
-
-	console.log("\t\tR: " + myLight.ambient.r + ", G: " + myLight.ambient.g + ", B: " + myLight.ambient.b + ", A: " + myLight.ambient.a + "\n");
-	
-	//diffuse
-	var diffuse = lightInfo.getElementsByTagName("diffuse");
-	if(diffuse == null) return "diffuse not found!";
-
-	console.log("diffuse: ");
-
-	var diffuseInfo = diffuse[0];
-
-	myLight.diffuse.r = this.reader.getFloat(diffuseInfo, "r", true);
-	myLight.diffuse.g = this.reader.getFloat(diffuseInfo, "g", true);
-	myLight.diffuse.b = this.reader.getFloat(diffuseInfo, "b", true);
-	myLight.diffuse.a = this.reader.getFloat(diffuseInfo, "a", true);
-
-	console.log("\t\tR: " + myLight.diffuse.r + ", G: " + myLight.diffuse.g + ", B: " + myLight.diffuse.b + ", A: " + myLight.diffuse.a + "\n");
-	
-	//specular
-	var specular = lightInfo.getElementsByTagName("specular");
-	if(specular == null) return "specular not found!";
-
-	console.log("specular: ");
-
-	var specularInfo = specular[0]; 
-
-	myLight.specular.r = this.reader.getFloat(specularInfo, "r", true);
-	myLight.specular.g = this.reader.getFloat(specularInfo, "g", true);
-	myLight.specular.b = this.reader.getFloat(specularInfo, "b", true);
-	myLight.specular.a = this.reader.getFloat(specularInfo, "a", true);
-
-	console.log("\t\tR: " + myLight.specular.r + ", G: " + myLight.specular.g + ", B: " + myLight.specular.b + ", A: " + myLight.specular.a + "\n");
-
-	this.lightsList.push(myLight);
-
-	}
-
-
-}
+    return null;
+};
 
 MySceneGraph.prototype.parseTextures= function(rootElement) {
 
@@ -773,7 +698,7 @@ MySceneGraph.prototype.onXMLError=function (message) {
 	this.loadedOk=false;
 };
 
-function Light(id) {
+function LightX(id) {
     this.id = id;
     this.enabled = false;
     this.position = {
@@ -874,3 +799,12 @@ function Leaf(id) {
     this.type = "";
     this.args = [];
 }
+
+MySceneGraph.prototype.parseColor = function(element) {
+    var color = {};
+    color.r = this.reader.getFloat(element, 'r');
+    color.g = this.reader.getFloat(element, 'g');
+    color.b = this.reader.getFloat(element, 'b');
+    color.a = this.reader.getFloat(element, 'a');
+    return color;
+};

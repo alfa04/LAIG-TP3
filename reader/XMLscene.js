@@ -54,36 +54,35 @@ XMLscene.prototype.init = function (application) {
 
 };
 
-XMLscene.prototype.initLights = function () {
+XMLscene.prototype.initLights = function() {
+    this.lights = [];
+    this.lightsID = [];
 
-    this.lightsNo = [];
+    for (var i = 0; i < this.graph.lights.length; i++) {
+        var l = this.graph.lights[i];
+        var aux = new CGFlight(this, i);
 
-    for(var i = 0; i<this.graph.lightsList.length; i++){
+        aux.lsxid = l.id;
+        l.enabled ? aux.enable() : aux.disable();
+        aux.setPosition(l.position.x, l.position.y, l.position.z, l.position.w);
+        aux.setAmbient(l.ambient.r, l.ambient.g, l.ambient.b, l.ambient.a);
+        aux.setDiffuse(l.diffuse.r, l.diffuse.g, l.diffuse.b, l.diffuse.a);
+        aux.setSpecular(l.specular.r, l.specular.g, l.specular.b, l.specular.a);
+        aux.setVisible(true);
+        aux.update();
 
-		if(this.graph.lightsList[i].enabled)
-			this.lights[i].enable();
-		else this.lights[i].disable();
+        this.lights[i] = aux;
+        this.lightsID[l.id] = l.enabled;
+    }
 
-		this.lights[i].id = this.graph.lightsList[i].id;
-    	this.lights[i].setPosition(this.graph.lightsList[i].position.x, this.graph.lightsList[i].position.y, this.graph.lightsList[i].position.z, this.graph.lightsList[i].position.w);
-	    this.lights[i].setDiffuse(this.graph.lightsList[i].diffuse.r, this.graph.lightsList[i].diffuse.g, this.graph.lightsList[i].diffuse.b, this.graph.lightsList[i].diffuse.a);
-	    this.lights[i].setAmbient(this.graph.lightsList[i].ambient.r, this.graph.lightsList[i].ambient.g, this.graph.lightsList[i].ambient.b, this.graph.lightsList[i].ambient.a);
-	    this.lights[i].setSpecular(this.graph.lightsList[i].specular.r, this.graph.lightsList[i].specular.g, this.graph.lightsList[i].specular.b, this.graph.lightsList[i].specular.a);
+    this.interface.initLights();
 
-		this.lights[i].setVisible(true);
-
-	    this.lights[i].update();
-	    if(this.graph.lightsList[i].enabled)
-	    	this.lightsNo[this.graph.lightsList[i].id] = true;
-		else this.lightsNo[this.graph.lightsList[i].id] = false;
-
-	}
-
-   // this.interface.enableLights();
 };
-
 XMLscene.prototype.initCameras = function () {
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(4, 0, 4));
+    this.cameraDestination = [15,15,15];
+    this.cameraTransition = false;
+    this.camTransTime = 1000;
 };
 
 XMLscene.prototype.setDefaultAppearance = function () {
@@ -119,8 +118,8 @@ XMLscene.prototype.onGraphLoaded = function ()
 	
 	//LIGHTS
 	//TODO: Descomentar e arranjar luzes
-  		//  this.initLights();
-
+  	
+	this.initLights();
     //TEXTURES
 
 	this.enableTextures(true);
@@ -150,7 +149,7 @@ XMLscene.prototype.onGraphLoaded = function ()
 		this.materialsList.push(this.material);	
 	}  
 
-	
+	//this.initLights();
     //LEAVES
     this.setLeaves();
 
@@ -555,6 +554,30 @@ XMLscene.prototype.update = function(timeNow) {
            // console.log(step);
 		}
 	}
+
+	if(this.cameraTransition) {
+		if(!this.camTransBeg) this.camTransBeg = timeNow;  //BEGINNING
+		else
+			{
+			var time_since_start = timeNow - this.camTransBeg;
+			if(time_since_start>=this.camTransTime) 
+				{ //END
+				this.camera.setPosition(this.cameraDestination);
+				this.camTransBeg=null;
+				this.cameraTransition=false;
+				}
+			else 
+				{
+				var time_perc = time_since_start / this.camTransTime;
+				var new_pos = [this.cameraOrigin[0]+(this.transitionVec[0]*time_perc),
+				this.cameraOrigin[1]+(this.transitionVec[1]*time_perc),
+				this.cameraOrigin[2]+(this.transitionVec[2]*time_perc)];
+				this.camera.setPosition(new_pos);
+				}
+			}
+	}
+ //if(this.player == 1) this.cameraGreen();
+   //             else this.cameraGreen();
 };
 
 XMLscene.prototype.logPicking = function ()
@@ -830,6 +853,58 @@ XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
 
 };
 
+//Cameras
+
+XMLscene.prototype.cameraTop = function() {
+
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [0,25,4];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
 
 
+XMLscene.prototype.cameraBlue = function() {
 
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [20,10,4];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
+
+XMLscene.prototype.cameraGreen = function() {
+
+    if(!this.cameraTransition) {
+        this.cameraOrigin=[this.camera.position[0], this.camera.position[1], this.camera.position[2]];
+        this.cameraDestination = [-12,10,4];
+        if(!arraysEqual(this.cameraDestination, this.cameraOrigin)) this.calcTransition();
+    }
+};
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+};
+
+XMLscene.prototype.calcTransition = function() {
+    this.transitionVec = [this.cameraDestination[0]-this.cameraOrigin[0],
+            this.cameraDestination[1]-this.cameraOrigin[1],
+            this.cameraDestination[2]-this.cameraOrigin[2]];
+
+    this.cameraTransition = true;
+};
+XMLscene.prototype.switchLight = function(id, _switch) {
+    for (var i = 0; i < this.lights.length; ++i) {
+        if (id == this.lights[i].lsxid) {
+            _switch ? this.lights[i].enable() : this.lights[i].disable();
+        }
+    }
+};
