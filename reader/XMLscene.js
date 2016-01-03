@@ -663,7 +663,7 @@ XMLscene.prototype.transformBoard = function(){
 	console.log(aux);
 
 	var mappieces = [];
-	var x = 7;
+	var x = 0;
 	var y = 0;
 		
 	for(var k=0; k< aux.length;k++){
@@ -727,12 +727,14 @@ XMLscene.prototype.transformBoard = function(){
 				this.nodesList.push(king);
 			}
 
+			console.log(x + "::::::::" + y);
+
 
 		y = y + 1;
 
 		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
 		{
-			x = x - 1;
+			x = x + 1;
 			y = 0;
 		}
 	}
