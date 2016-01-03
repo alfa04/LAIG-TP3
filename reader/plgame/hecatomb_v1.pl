@@ -1,4 +1,4 @@
-﻿
+
 
 
 
@@ -169,11 +169,11 @@ positionsDifferent(Xi,Yi,Xf,Yf) :-
 
 checkCorrectPiece(1,Board,Xi,Yi,Xf,Yf):-getPiece(Xi,Yi,Board,InP), getPiece(Xf,Yf,Board,FnP),
     ((InP == '$'; InP == '+'),(FnP == '&'; FnP == '*'; FnP == ' '));
-    (write('You can only play YOUR pieces and eat your oponent´s!'),nl,Board is B).
+    (write('You can only play YOUR pieces and eat your oponent´s!'),nl,fail).
     
 checkCorrectPiece(2,Board,Xi,Yi,Xf,Yf):-getPiece(Xi,Yi,Board,InP), getPiece(Xf,Yf,Board,FnP),
     ((InP == '&'; InP == '*'),(FnP == '$'; FnP == '+'; FnP == ' '));
-    (write('You can only play YOUR pieces and eat your oponent´s!'),nl,Board is B).
+    (write('You can only play YOUR pieces and eat your oponent´s!'),nl,fail).
     
 checkMovement(Xi,Yi,Xf,Yf,Board):-
     getPiece(Xi,Yi,Board,P), checkPlay(Xi,Yi,Xf,Yf,P,D), checkPath(Xi,Yi,Xf,Yf,P,D,Board,0).
