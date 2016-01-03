@@ -664,7 +664,7 @@ XMLscene.prototype.transformBoard = function(){
 
 	var mappieces = [];
 	var x = 0;
-	var y = 0;
+	var y = 7;
 		
 	for(var k=0; k< aux.length;k++){
 		if(aux[k]=='$'||aux[k]=='&'||aux[k]=='+'||aux[k]=='*'||aux[k]==' ')
@@ -727,15 +727,13 @@ XMLscene.prototype.transformBoard = function(){
 				this.nodesList.push(king);
 			}
 
-			console.log(x + "::::::::" + y);
 
-
-		y = y + 1;
+		y = y - 1;
 
 		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
 		{
 			x = x + 1;
-			y = 0;
+			y = 7;
 		}
 	}
 
@@ -824,11 +822,29 @@ XMLscene.prototype.handleReply = function(data){
 	//document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
-XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
+XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 
 	 for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
         if(node["id"] == "queen" || node["id"] == "king"){
+        	if(xi == 0)
+        		xi = 7;
+        	else if(xi == 1)
+        		xi = 6;
+        	else if(xi == 2)
+        		xi = 5;
+        	else if(xi == 3)
+        		xi = 4;
+        	else if(xi == 4)
+        		xi = 3;
+        	else if(xi == 5)
+        		xi = 2;
+        	else if(xi == 6)
+        		xi = 1;
+        	else if(xi == 7)
+        		xi = 0;
+
+
         	if(node["primitive"].x == xi && node["primitive"].y == yi){
         		console.log(xi + "xi, " + yi + "yi");
         		var cp = [];
@@ -840,7 +856,6 @@ XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
         		cp[1].push(xf);
         		cp[1].push(yf);
         		cp[1].push(0);
-        		cp[2] = [];
 
         		var animation = [];
         		animation = new LinearAnimation("movePiece", 5, cp);
