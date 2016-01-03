@@ -37,8 +37,6 @@ LinearAnimation.prototype.update = function (step) {
 
     this.speed = step/1000 * this.totalDist/this.span;
 
-    //console.log(this.speed);
-
     var v = this.calcVec();
 
     var vecR = vec3.fromValues(v[0], 0, v[2]);
@@ -55,7 +53,6 @@ LinearAnimation.prototype.update = function (step) {
     mat4.identity(this.matrix);
     mat4.translate(this.matrix, this.matrix, v);
     mat4.rotateY(this.matrix, this.matrix, rotAng);
-
     
 
 };

@@ -45,10 +45,12 @@ XMLscene.prototype.init = function (application) {
     this.timeNow = new Date().getTime();
   //  this.q = new Queen(this,[5,5]);
 	
-	//this.setUpdatePeriod(10);
+	this.setUpdatePeriod(10);
 	
 	//this.interface.menu();
 	this.setPickEnabled(true);
+
+	
 
 };
 
@@ -156,6 +158,9 @@ XMLscene.prototype.onGraphLoaded = function ()
     //NODES
     this.setNodes();
 
+
+	this.transformBoard();
+
     //ANIMATIONS
     for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
@@ -182,11 +187,8 @@ XMLscene.prototype.onGraphLoaded = function ()
 		} 
 	}
 
-    this.setAnimation();
 
-    this.fixAnims();
 
-	this.transformBoard();
 };
 
 XMLscene.prototype.display = function () {
@@ -206,7 +208,7 @@ XMLscene.prototype.display = function () {
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
 
-
+	
 	
 	// ---- END Background, camera and axis setup
 
@@ -225,6 +227,10 @@ XMLscene.prototype.display = function () {
 		
         // setInitials transformations
         this.setInitials();
+
+        this.setAnimation();
+
+
       //  this.q.display();
 		//Lights
         for (var i = 0; i < this.lights.length; i++)
@@ -242,22 +248,24 @@ XMLscene.prototype.display = function () {
             	//console.log(node["primitive"]);
                 node["primitive"].updateTex(node["texture"].amplifFactor_S, node["texture"].amplifFactor_T);
             }
-            if(node["animationref"] != null && node["animationref"].finished == false){
+            
+            if(node["animationref"] != null){
             	this.multMatrix(node["animationref"].matrix);
+            	//console.log(node["animationref"].matrix);
 			}
             node["material"].apply();
             if(node["id"] != "queen" && node["id"] != "king")
             	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
-
-          //  console.log(node["primitive"]);
+           // if(node["id"] == "queen")
+          	//  console.log(node["primitive"]);
             node["primitive"].display();
             this.popMatrix();
         }
 
 
         //queens
-
+/*
         for(var i = 0; i < this.queensList.length; i++){
         
         	var queen = this.queensList[i];
@@ -280,7 +288,7 @@ XMLscene.prototype.display = function () {
         }
 
 
-        
+        */
 	}
 
 	//this.transformBoard();
@@ -570,7 +578,7 @@ XMLscene.prototype.logPicking = function ()
 					this.yf = customId % 10 -1;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
 
-				//	this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
+					this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
 
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
@@ -632,7 +640,7 @@ XMLscene.prototype.transformBoard = function(){
 	console.log(aux);
 
 	var mappieces = [];
-	var x = 0;
+	var x = 7;
 	var y = 0;
 		
 	for(var k=0; k< aux.length;k++){
@@ -701,12 +709,13 @@ XMLscene.prototype.transformBoard = function(){
 
 		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
 		{
-			x = x + 1;
+			x = x - 1;
 			y = 0;
 		}
 	}
 
 };
+
 String.prototype.insert = function (index, string) {
   if (index > 0)
     return this.substring(0, index) + string + this.substring(index, this.length);
@@ -791,20 +800,25 @@ XMLscene.prototype.handleReply = function(data){
 };
 
 XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
-	console.log(xi + "x");
 
 	 for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
         if(node["id"] == "queen" || node["id"] == "king"){
         	if(node["primitive"].x == xi && node["primitive"].y == yi){
-        		console.log(node["primitive"].x);
-
+        		console.log(xi + "xi, " + yi + "yi");
         		var cp = [];
-        		cp.push(xf);
-        		cp.push(yf);
-        		cp.push(0);
-        		console.log(cp + "terceiro");
-        		var animation = new LinearAnimation("movePiece", 5, cp);
+        		cp[0] = [];
+        		cp[0].push(0);
+        		cp[0].push(0);
+        		cp[0].push(0);
+        		cp[1] = [];	
+        		cp[1].push(xf);
+        		cp[1].push(yf);
+        		cp[1].push(0);
+        		cp[2] = [];
+
+        		var animation = [];
+        		animation = new LinearAnimation("movePiece", 5, cp);
 				animation["type"] = 'linear';
 				node["animationref"] = "movePiece";
 				this.animationsList.push(animation);
