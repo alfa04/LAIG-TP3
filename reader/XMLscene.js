@@ -38,6 +38,8 @@ XMLscene.prototype.init = function (application) {
 	this.xf;
 	this.yi;
 	this.yf;
+	this.nextPieceX = 0;
+	this.nextPieceY = 0;
 	this.count = 0;
     map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
 	this.player = 1;
@@ -49,7 +51,7 @@ XMLscene.prototype.init = function (application) {
   //  this.q = new Queen(this,[5,5]);
 	
 
-	this.setUpdatePeriod(50);
+	this.setUpdatePeriod(10);
 	this.appearance = new CGFappearance(this);
 	this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
 	this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
@@ -378,15 +380,25 @@ XMLscene.prototype.display = function () {
             
             if(node["animationref"] != null){
             	this.multMatrix(node["animationref"].matrix);
-            	//console.log(node["animationref"].matrix);
 			}
+
+			if(node["animationref"] != null && node["animationref"].finished == true && node["animationref"].animating == true){
+				console.log("OSIDOIASD" + node["animationref"].controlPoint[1][0]);
+					console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
+            		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+            		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
+            		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+            		node["animationref"].animating = false;
+            	
+
+            }
+
             node["material"].apply();
-            if(node["id"] != "king")
+            if(node["id"] != "queen" && node["id"] != "king")
             	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
-           // if(node["id"] == "queen")
-          	//  console.log(node["primitive"]);
-            node["primitive"].display();
+
+            	node["primitive"].display();
             this.popMatrix();
         }
 
@@ -1041,9 +1053,10 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 				animation["type"] = 'linear';
 				node["animationref"] = name;
 				this.animationsList.push(animation);
+				node["primitive"].x = xi1;
 
 				//node["primitive"].x = xi1 + moveX; 
-				//node["primitive"].x = yi + moveY; 
+				//node["primitive"].y = yi + moveY; 
 				
 			}
 

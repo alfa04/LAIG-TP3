@@ -5,7 +5,7 @@ function LinearAnimation(id, span, controlPoint) {
     this.controlPoint = controlPoint;
     this.totalDist = 0;
     this.finished = false;
-
+    this.animating = true;
     this.cpX = 0;
     this.cpY = 0;
     this.cpZ = 0;
