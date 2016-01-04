@@ -1,6 +1,8 @@
 
 function XMLscene() {
     CGFscene.call(this);
+    this.selectedExampleShader=0;
+    this.appearance = null;
 };
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -46,9 +48,28 @@ XMLscene.prototype.init = function (application) {
   //  this.q = new Queen(this,[5,5]);
 	
 	this.setUpdatePeriod(50);
+	this.appearance = new CGFappearance(this);
+	this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
+	this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
+	this.appearance.setSpecular(0.0, 0.0, 0.0, 1);	
+	this.appearance.setShininess(120);
 	
 	//this.interface.menu();
 	this.setPickEnabled(true);
+	// font texture: 16 x 16 characters
+	// http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
+	this.fontTexture = new CGFtexture(this, "textures/oolite-font.png");
+	this.appearance.setTexture(this.fontTexture);
+
+	// plane where texture character will be rendered
+	this.plane=new Plane2(this);
+	
+	// instatiate text shader
+	this.textShader=new CGFshader(this.gl, "shaders/font.vert", "shaders/font.frag");
+
+	// set number of rows and columns in font texture
+	this.textShader.setUniformsValues({'dims': [16, 16]});
+
 
 };
 
@@ -201,10 +222,114 @@ XMLscene.prototype.display = function () {
 	// Initialize Model-View matrix as identity (no transformation
 	this.updateProjectionMatrix();
     this.loadIdentity();
-
+    if (this.graph.loadedOk){
+     for (var i = 0; i < this.lights.length; i++)
+            this.lights[i].update();}
+	// An example of how to show something that is not affected by the camera (e.g. a HUP display)
+	this.appearance.apply();
+	this.setActiveShaderSimple(this.textShader);
+	this.pushMatrix();
+	this.scale(0.1,0.1,1);
+	this.activeShader.setUniformsValues({'charCoords': [8,4]});
+		this.translate(-14,19,-10);
+		this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [3,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [1,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [4,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [15,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [13,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	if(tempplayer == 1){
+		this.activeShader.setUniformsValues({'charCoords': [0,5]});
+	this.translate(-5,-35,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [12,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [1,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [9,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [1,3]});
+	this.translate(2,0,0);
+	this.plane.display();
+	}
+	else{
+		this.activeShader.setUniformsValues({'charCoords': [0,5]});
+	this.translate(-5,-35,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [12,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [1,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [9,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,3]});
+	this.translate(2,0,0);
+	this.plane.display();
+	}	
+	this.popMatrix();
+	
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
+		this.pushMatrix();
 
+		this.scale(1,1,1);
+
+		// set character to display to be in the 6th column, 5th line (0-based)
+		// the shader will take care of computing the correct texture coordinates 
+		// of that character inside the font texture (check shaders/font.vert )
+		// Homework: This should be wrapped in a function/class for displaying a full string
+		this.translate(3,3,0);
+		this.activeShader.setUniformsValues({'charCoords': [12,4]});
+		this.plane.display();
+
+		this.translate(1,0,0);
+		this.activeShader.setUniformsValues({'charCoords': [1,4]});
+		this.plane.display();
+
+		this.translate(1,0,0);
+		this.activeShader.setUniformsValues({'charCoords': [9,4]});
+		this.plane.display();
+
+		this.translate(1,0,0);
+		this.activeShader.setUniformsValues({'charCoords': [7,4]});
+		this.plane.display();
+
+	this.popMatrix();
+	this.setActiveShaderSimple(this.defaultShader);	
 
 	
 	// ---- END Background, camera and axis setup
@@ -218,7 +343,6 @@ XMLscene.prototype.display = function () {
 		
 		// Draw axis
 		this.axis.display();
-
 		this.setDefaultAppearance();
 
 		
@@ -226,8 +350,7 @@ XMLscene.prototype.display = function () {
         this.setInitials();
       //  this.q.display();
 		//Lights
-        for (var i = 0; i < this.lights.length; i++)
-            this.lights[i].update();
+       
 
         //Nodes
 
