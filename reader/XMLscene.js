@@ -47,12 +47,14 @@ XMLscene.prototype.init = function (application) {
     this.timeNow = new Date().getTime();
   //  this.q = new Queen(this,[5,5]);
 	
+
 	this.setUpdatePeriod(50);
 	this.appearance = new CGFappearance(this);
 	this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
 	this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
 	this.appearance.setSpecular(0.0, 0.0, 0.0, 1);	
 	this.appearance.setShininess(120);
+
 	
 	//this.interface.menu();
 	this.setPickEnabled(true);
@@ -70,6 +72,8 @@ XMLscene.prototype.init = function (application) {
 	// set number of rows and columns in font texture
 	this.textShader.setUniformsValues({'dims': [16, 16]});
 
+
+	
 
 };
 
@@ -176,6 +180,9 @@ XMLscene.prototype.onGraphLoaded = function ()
     //NODES
     this.setNodes();
 
+
+	this.transformBoard();
+
     //ANIMATIONS
     for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
@@ -202,11 +209,8 @@ XMLscene.prototype.onGraphLoaded = function ()
 		} 
 	}
 
-    this.setAnimation();
 
-    this.fixAnims();
 
-	this.transformBoard();
 };
 
 XMLscene.prototype.display = function () {
@@ -306,6 +310,7 @@ XMLscene.prototype.display = function () {
 	this.applyViewMatrix();
 		this.pushMatrix();
 
+
 		this.scale(1,1,1);
 
 		// set character to display to be in the 6th column, 5th line (0-based)
@@ -331,6 +336,7 @@ XMLscene.prototype.display = function () {
 	this.popMatrix();
 	this.setActiveShaderSimple(this.defaultShader);	
 
+
 	
 	// ---- END Background, camera and axis setup
 
@@ -348,6 +354,10 @@ XMLscene.prototype.display = function () {
 		
         // setInitials transformations
         this.setInitials();
+
+        this.setAnimation();
+
+
       //  this.q.display();
 		//Lights
        
@@ -364,22 +374,24 @@ XMLscene.prototype.display = function () {
             	//console.log(node["primitive"]);
                 node["primitive"].updateTex(node["texture"].amplifFactor_S, node["texture"].amplifFactor_T);
             }
-            if(node["animationref"] != null && node["animationref"].finished == false){
+            
+            if(node["animationref"] != null){
             	this.multMatrix(node["animationref"].matrix);
+            	//console.log(node["animationref"].matrix);
 			}
             node["material"].apply();
             if(node["id"] != "queen" && node["id"] != "king")
             	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
-
-          //  console.log(node["primitive"]);
+           // if(node["id"] == "queen")
+          	//  console.log(node["primitive"]);
             node["primitive"].display();
             this.popMatrix();
         }
 
 
         //queens
-
+/*
         for(var i = 0; i < this.queensList.length; i++){
         
         	var queen = this.queensList[i];
@@ -402,7 +414,7 @@ XMLscene.prototype.display = function () {
         }
 
 
-        
+        */
 	}
 
 	//this.transformBoard();
@@ -716,7 +728,7 @@ XMLscene.prototype.logPicking = function ()
 					this.yf = customId % 10 -1;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
 
-				//	this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
+					this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
 
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
@@ -730,6 +742,8 @@ XMLscene.prototype.logPicking = function ()
 				this.texture1 = this.temptex;
 				this.id1 = customId;
 				this.xi = Math.floor(customId/10) - 1;
+				console.log("LOGGG"+this.xi);
+
 				this.yi = customId % 10 - 1;
 				//this.yi = customId % 10;
 				}
@@ -779,7 +793,7 @@ XMLscene.prototype.transformBoard = function(){
 
 	var mappieces = [];
 	var x = 0;
-	var y = 0;
+	var y = 7;
 		
 	for(var k=0; k< aux.length;k++){
 		if(aux[k]=='$'||aux[k]=='&'||aux[k]=='+'||aux[k]=='*'||aux[k]==' ')
@@ -795,7 +809,7 @@ XMLscene.prototype.transformBoard = function(){
 
 	for (var i=0; i< mappieces.length; i++) {
 
-		//console.log(this.map[i][j] + "aqui");
+		//console.log(x+"-"+y + "-aquiiiiiiiiii");
 			if(mappieces[i] == '$'){
 				var q = new Queen(this,[x,y]);
 				var queen = [];
@@ -843,16 +857,17 @@ XMLscene.prototype.transformBoard = function(){
 			}
 
 
-		y = y + 1;
+		y = y - 1;
 
 		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
 		{
 			x = x + 1;
-			y = 0;
+			y = 7;
 		}
-	}
+	}console.log(x+"-"+y + "-aquiiiiiiiiii");
 
 };
+
 String.prototype.insert = function (index, string) {
   if (index > 0)
     return this.substring(0, index) + string + this.substring(index, this.length);
@@ -936,21 +951,67 @@ XMLscene.prototype.handleReply = function(data){
 	//document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
-XMLscene.prototype.getPieceToMove = function(xi, yi, xf, yf){
-	console.log(xi + "x");
-
+XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
+	var xi1 = 0;
 	 for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
         if(node["id"] == "queen" || node["id"] == "king"){
-        	if(node["primitive"].x == xi && node["primitive"].y == yi){
-        		console.log(node["primitive"].x);
+        	console.log("mod"+ (yi%2));
+        	console.log("xi"+ xi + "yi" + yi);
+        	if((yi%2)==1){
+        		
+	        	if(xi == 0)
+	        		xi1 = 7;
+	        	else if(xi == 1)
+	        		xi1 = 6;
+	        	else if(xi == 2)
+	        		xi1 = 5;
+	        	else if(xi == 3)
+	        		xi1 = 4;
+	        	else if(xi == 4)
+	        		xi1 = 3;
+	        	else if(xi == 5)
+	        		xi1 = 2;
+	        	else if(xi == 6)
+	        		xi1 = 1;
+	        	else if(xi == 7)
+	        		xi1 = 0;
+			}
+			else if((yi%2)==0)
+			{
+				if(xi == 0)
+	        		xi1 = 7;
+	        	else if(xi == 1)
+	        		xi1 = 6;
+	        	else if(xi == 2)
+	        		xi1 = 5;
+	        	else if(xi == 3)
+	        		xi1 = 4;	
+				else if(xi == 4)
+	        		xi1 = 3;
+	        	else if(xi == 5)
+	        		xi1 = 2;
+	        	else if(xi == 6)
+	        		xi1 = 1;
+	        	else if(xi == 7)
+	        		xi1 = 0;
+			}
 
+
+        	if(node["primitive"].x == xi1 && node["primitive"].y == yi){
+        		console.log(xi + "xi, " + yi + "yi");
         		var cp = [];
-        		cp.push(xf);
-        		cp.push(yf);
-        		cp.push(0);
-        		console.log(cp + "terceiro");
-        		var animation = new LinearAnimation("movePiece", 5, cp);
+        		cp[0] = [];
+        		cp[0].push(0);
+        		cp[0].push(0);
+        		cp[0].push(0);
+        		cp[1] = [];	
+        		cp[1].push(xf);
+        		cp[1].push(yf);
+        		cp[1].push(0);
+
+        		var animation = [];
+        		animation = new LinearAnimation("movePiece", 5, cp);
 				animation["type"] = 'linear';
 				node["animationref"] = "movePiece";
 				this.animationsList.push(animation);

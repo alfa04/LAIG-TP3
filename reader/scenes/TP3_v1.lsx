@@ -965,22 +965,7 @@
         </DESCENDANTS>
     </NODE> -->
 
-     <NODE id="rainha">     
-        <MATERIAL id="body" /> 
-        <TEXTURE id="body" />  
-
-       <!-- <SCALE sx="0.2" sy="0.2" sz="0.2" />
-        <TRANSLATION x="2" y="2" z="3" /> -->
-
-        <DESCENDANTS>
-        <DESCENDANT id="reileaf" />
-          <!--<DESCENDANT id="rainhatopoall" /> 
-          <DESCENDANT id="rainhacorpoall" /> 
-          <DESCENDANT id="rainhacorpobaseall" /> 
-           <DESCENDANT id="base" /> --> 
-        </DESCENDANTS>
-
-    </NODE>
+ 
 
 
    <!--  <NODE id="base">  
