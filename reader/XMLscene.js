@@ -161,6 +161,12 @@ XMLscene.prototype.onGraphLoaded = function ()
 		
 	}    
 
+	this.blueTex = new CGFtexture(this, "scenes/textures/blue.jpg");
+	this.greenTex = new CGFtexture(this, "scenes/textures/green.jpg");
+	this.goldenTex = new CGFtexture(this, "scenes/textures/golden.jpg");
+	this.goldenTex2 = new CGFtexture(this, "scenes/textures/golden2.jpg");
+
+
 
     //MATERIALS
 
@@ -371,7 +377,6 @@ XMLscene.prototype.display = function () {
         for(var i = 0; i < this.nodesList.length; i++){
         
         	var node = this.nodesList[i];
-        	if(node["id"] != "erased"){
         	//console.log(node["texture"]);
             this.pushMatrix();
             node["material"].setTexture(node["texture"]);
@@ -401,7 +406,7 @@ XMLscene.prototype.display = function () {
 
             	node["primitive"].display();
             this.popMatrix();
-        }
+
         }
 
 
@@ -828,7 +833,7 @@ XMLscene.prototype.transformBoard = function(){
 			if(mappieces[i] == '$'){
 				var q = new Queen(this,[x,y]);
 				var queen = [];
-				queen["texture"] = new CGFtexture(this, "scenes/textures/green.jpg");
+				queen["texture"] = this.greenTex;
 			    queen["material"] = this.materialsList[0];
 			    queen["animationref"] = null;
 			    queen["primitive"] = q;
@@ -841,7 +846,7 @@ XMLscene.prototype.transformBoard = function(){
 			else if(mappieces[i] == '&'){
 				var q = new Queen(this,[x,y]);
 				var queen = [];
-				queen["texture"] = new CGFtexture(this, "scenes/textures/blue.jpg");
+				queen["texture"] = this.blueTex;
 			    queen["material"] = this.materialsList[0];
 			    queen["animationref"] = null;
 			    queen["primitive"] = q;
@@ -854,7 +859,7 @@ XMLscene.prototype.transformBoard = function(){
 			else if(mappieces[i] == '+'){
 				var k = new King(this,[x,y]);
 				var king = [];
-				king["texture"] = new CGFtexture(this, "scenes/textures/golden.jpg");
+				king["texture"] = this.goldenTex;
 			    king["material"] = this.materialsList[0];
 			    king["animationref"] = null;
 			    king["primitive"] = k;
@@ -865,7 +870,7 @@ XMLscene.prototype.transformBoard = function(){
 			else if(mappieces[i] == '*'){
 				var k = new King(this,[x,y]);
 				var king = [];
-				king["texture"] = new CGFtexture(this, "scenes/textures/golden2.jpg");
+				king["texture"] = this.goldenTex2;
 			    king["material"] = this.materialsList[0];
 			    king["animationref"] = null;
 			    king["primitive"] = k;
@@ -1058,14 +1063,14 @@ XMLscene.prototype.handleReply = function(data){
 XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 
 
-	/*//atualiza mapa
+	/*
 	if(this.count != 0){
 		this.updateBoard();
 	}*/
 
 	
 
-	
+	//atualiza mapa
     if(this.count != 0){
     	var c = this.count-1;
     	var nameTmp = "movePiece" + c;
@@ -1144,24 +1149,14 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
         		var moveY = 0;
         		console.log(xi + "xi1, " + yi + "yi");
         		console.log(xf+ "xf, " + yf + "yf");
-        		if(xf-xi > 0){
-        			moveX = -1;
+        		if(xf-xi != 0){
+        			moveX = -(xf-xi);
         			moveY = 0;
         		}
 
-        		else if(xf-xi < 0){
-        			moveX = 1;
-        			moveY = 0;
-        		}
-
-        		else if(xf-xi == 0 && yf-yi < 0){
+        		else if(xf-xi == 0 && yf-yi != 0){
         			moveX = 0;
-        			moveY = -1;
-        		}
-
-        		else if(xf-xi == 0 && yf-yi > 0){
-        			moveX = 0;
-        			moveY = +1;
+        			moveY = yf-yi;
         		}
 
         		
