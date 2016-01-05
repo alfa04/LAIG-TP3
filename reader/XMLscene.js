@@ -315,6 +315,64 @@ XMLscene.prototype.display = function () {
 	this.activeShader.setUniformsValues({'charCoords': [2,3]});
 	this.translate(2,0,0);
 	this.plane.display();
+	}
+
+	this.activeShader.setUniformsValues({'charCoords': [4,5]});
+	this.translate(-7,-1,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [14,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [3,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	if(tempturns => 0){
+	
+		if(tempturns == 10){
+			this.activeShader.setUniformsValues({'charCoords': [1,3]});
+			this.translate(2,0,0);
+			this.plane.display();
+			this.translate(1,0,0);
+			this.activeShader.setUniformsValues({'charCoords': [0,3]});
+			this.plane.display();
+		}
+		else if (tempturns > 0){
+	this.activeShader.setUniformsValues({'charCoords': [tempturns,3]});
+	this.translate(2,0,0);
+	this.plane.display();
+		}
+		else{
+	this.activeShader.setUniformsValues({'charCoords': [7,4]});
+	this.translate(2,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [1,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [13,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [15,4]});
+	this.translate(2,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [6,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [5,4]});
+	this.translate(1,0,0);
+	this.plane.display();
+	this.activeShader.setUniformsValues({'charCoords': [2,5]});
+	this.translate(1,0,0);
+	this.plane.display();
+		}
 	}	
 	this.popMatrix();
 	
