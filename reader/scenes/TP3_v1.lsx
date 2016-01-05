@@ -96,6 +96,7 @@
 <LEAVES>
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
+    <LEAF id="back" type="rectangle" args="0.0 70.0 70.0 0.0" />
     <LEAF id="11" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="12" type="rectangle" args="0.0 1.0 1.0 0.0" />
     <LEAF id="13" type="rectangle" args="0.0 1.0 1.0 0.0" />
@@ -311,7 +312,12 @@
         <ROTATION axis="x" angle="-90.0" />
         <TRANSLATION x="0" y="-8" z="0" /> 
 
-        <DESCENDANTS>     
+        <DESCENDANTS>
+	    <DESCENDANT id="back6" /> 
+	    <DESCENDANT id="back5" /> 
+	    <DESCENDANT id="back4" /> 
+	    <DESCENDANT id="back3" />  
+            <DESCENDANT id="back2" />       
             <DESCENDANT id="11n" />
             <DESCENDANT id="12n" />
             <DESCENDANT id="13n" />
@@ -381,6 +387,59 @@
 
     </NODE>
     <!-- lINHA 1 -->
+ <NODE id="back2">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />
+	<ROTATION axis="x" angle="90.0" />
+	<ROTATION axis="y" angle="180.0" />
+	 <TRANSLATION x="-40" y="-30" z="-10" />     
+        <DESCENDANTS>  
+            <DESCENDANT id="back" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>
+    </NODE>
+<NODE id="back3">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />
+	<ROTATION axis="x" angle="90.0" />
+	 <TRANSLATION x="-30" y="-30" z="-16" />     
+        <DESCENDANTS>  
+            <DESCENDANT id="back" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>
+    </NODE>
+<NODE id="back4">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />
+	<ROTATION axis="x" angle="90.0" />
+	<ROTATION axis="y" angle="270.0" />
+	 <TRANSLATION x="-20" y="-30" z="-20" />     
+        <DESCENDANTS>  
+            <DESCENDANT id="back" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>
+    </NODE>
+<NODE id="back5">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />
+	<ROTATION axis="x" angle="90.0" />
+	<ROTATION axis="y" angle="450.0" />
+	 <TRANSLATION x="-20" y="-40" z="-30" />     
+        <DESCENDANTS>  
+            <DESCENDANT id="back" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>´
+<NODE id="back6">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />
+	<ROTATION axis="x" angle="180" />
+	<ROTATION axis="y" angle="180" />
+	<TRANSLATION x="-40" y="-40" z="-40" />   
+        <DESCENDANTS>  
+            <DESCENDANT id="back" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>
+    </NODE>
      <NODE id="11n">  
         <MATERIAL id="body" />
         <TEXTURE id="squarewhite" />     
