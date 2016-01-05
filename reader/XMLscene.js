@@ -13,6 +13,7 @@ var map;
 var validPlay = 0;
 var canPlay = 0;
 var timeout = 9;
+var gameOver = false;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
@@ -48,7 +49,8 @@ XMLscene.prototype.init = function (application) {
 	this.player = 1;
 	this.turns = 10;
 	this.axis=new CGFaxis(this);
-	
+	gameOver = false;
+
   //  this.q = new Queen(this,[5,5]);
 	this.timeNow = new Date().getTime();
 
@@ -76,17 +78,22 @@ XMLscene.prototype.init = function (application) {
 	// set number of rows and columns in font texture
 	this.textShader.setUniformsValues({'dims': [16, 16]});
 	setInterval(function(){
-	if(timeout > 0){
-	timeout--;
-	}
-	else{
-	timeout = 9;
-	 if(tempplayer == 1)
-        	tempplayer = 2;
-		else
-			tempplayer = 1;
-	}
+	if(gameOver == false){
+		if(timeout > 0){
+		timeout--;
+		}
+		else{
+		timeout = 9;
+		 if(tempplayer == 1)
+	        	tempplayer = 2;
+			else
+				tempplayer = 1;
+			tempturns--;
+			}
+		}
 	}, 1000);
+
+
 
 };
 
@@ -383,6 +390,7 @@ XMLscene.prototype.display = function () {
 			this.translate(1,0,0);
 			this.plane.display();
 			this.setPickEnabled(false);
+			gameOver = true;
 		}
 
 	}	
@@ -409,6 +417,7 @@ XMLscene.prototype.display = function () {
 		this.translate(1,0,0);
 		this.plane.display();
 		this.setPickEnabled(false);
+		gameOver = true;
 
 	}
 
@@ -433,15 +442,16 @@ XMLscene.prototype.display = function () {
 		this.translate(1,0,0);
 		this.plane.display();
 		this.setPickEnabled(false);
+		gameOver = true;
 
 	}
 
 
+	if(gameOver == false){
+		this.activeShader.setUniformsValues({'charCoords': [timeout,3]});
+		this.translate(6,0,0);
+		this.plane.display();	
 	}
-	
-	this.activeShader.setUniformsValues({'charCoords': [timeout,3]});
-	this.translate(6,0,0);
-	this.plane.display();	
 	this.popMatrix();
 	
 	// Apply transformations corresponding to the camera position relative to the origin
@@ -1320,7 +1330,7 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 	        		cp[1].push(moveY);
 					console.log("cp: " + cp);
 	        		var animation = [];
-	        		animation = new LinearAnimation(name, 5, cp);
+	        		animation = new LinearAnimation(name, 2.5, cp);
 					animation["type"] = 'linear';
 					node["animationref"] = name;
 					this.animationsList.push(animation);
