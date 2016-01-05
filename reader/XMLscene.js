@@ -10,6 +10,8 @@ XMLscene.prototype.constructor = XMLscene;
 var tempplayer = 1;
 var tempturns = 10;
 var map;
+var validPlay = 0;
+var canPlay = 0;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
@@ -45,7 +47,6 @@ XMLscene.prototype.init = function (application) {
     map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
 	this.player = 1;
 	this.turns = 10;
-	this.validPlay = 1; 
 	this.axis=new CGFaxis(this);
 
 
@@ -748,14 +749,14 @@ XMLscene.prototype.logPicking = function ()
 					this.xf = Math.floor(customId/10) - 1;
 					this.yf = customId % 10 -1;
 					this.makeRequest(this.xi,this.yi,this.xf,this.yf);
-
-					this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
+					
 
 					this.texture2 = this.temptex;
 					this.piece1 = 0;
 					this.id2 = customId;
 					this.nodesList[this.indexNode(this.id1)]["texture"] =this.texture1;
 					this.nodesList[this.indexNode(this.id2)]["texture"] =this.texture2;
+
 		
 				}
 				else{
@@ -772,6 +773,11 @@ XMLscene.prototype.logPicking = function ()
 			}
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
+	}
+
+	if(canPlay == 1){
+		this.getPieceToMove(this.xi,this.yi,this.xf,this.yf);
+		canPlay = 0;
 	}
 };
 
@@ -791,12 +797,13 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-
+	
 	console.log("XI:" + xi + " YI: " + yi + "XF: " + xf + "YF: " + yf);
 	//absoluto para já a move porque nem todas dão
 
 	//console.log("MAPPPP"+this.map);
 	//absoluto para já a move
+
 
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
 	var requestString = "pvpgame(" + tempplayer + ","+ map +"," +tempturns + ","+ yi +"," +xi+","+yf+","+xf+")";
@@ -992,12 +999,14 @@ XMLscene.prototype.handleReply = function(data){
 	var resposta = data.target.response.split("");
 	console.log(data.target.response);
 	// parse server response
-   
+    canPlay = 1;
     console.log('Código de resposta:' + resposta[1]);
-	
+	console.log(validPlay + "atua ae");
     // handle reply
     switch(resposta[1]){
       case '0':
+      	validPlay = 1; 
+		console.log(validPlay + "atua ae" + canPlay);
        	map = data.target.response.slice(3);
        	map = map.substring(0, map.length - 1);
        	var x=2;
@@ -1047,16 +1056,18 @@ XMLscene.prototype.handleReply = function(data){
        	}
         console.log("Mapa após pedido: "+map);
         this.mapUpdated = map;
-       if(tempplayer == 1)
-        tempplayer = 2;
+        if(tempplayer == 1)
+        	tempplayer = 2;
 		else
-		tempplayer = 1;
+			tempplayer = 1;
 		tempturns--;
-		this.validPlay = 1; 
+		
+		
         break;
       default:
         console.log('erro no servidor');
-        this.validPlay = 0; 
+        validPlay = 0; 
+        console.log(validPlay + "atua ae" + canPlay);
         break;
     }
    
@@ -1071,9 +1082,9 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 		this.updateBoard();
 	}*/
 
-	console.log(this.validPlay);
+	console.log(validPlay + "estoua qui");
 
-	if(this.validPlay == 1){
+	if(validPlay == 1){
 
 		//atualiza mapa
 	    if(this.count != 0){
