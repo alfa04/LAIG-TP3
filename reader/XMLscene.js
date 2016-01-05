@@ -22,6 +22,7 @@ XMLscene.prototype.init = function (application) {
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
+    this.mapUpdated = [];
     this.leaveslist = [];
     this.texturesList = [];
     this.materialsList = [];
@@ -370,6 +371,7 @@ XMLscene.prototype.display = function () {
         for(var i = 0; i < this.nodesList.length; i++){
         
         	var node = this.nodesList[i];
+        	if(node["id"] != "erased"){
         	//console.log(node["texture"]);
             this.pushMatrix();
             node["material"].setTexture(node["texture"]);
@@ -378,20 +380,19 @@ XMLscene.prototype.display = function () {
                 node["primitive"].updateTex(node["texture"].amplifFactor_S, node["texture"].amplifFactor_T);
             }
             
-            if(node["animationref"] != null){
+            if(node["animationref"] != null && node["animationref"].animating == true){
             	this.multMatrix(node["animationref"].matrix);
 			}
 
-			if(node["animationref"] != null && node["animationref"].finished == true && node["animationref"].animating == true){
+			/*if(node["animationref"] != null && node["animationref"].finished == true && node["animationref"].animating == true){
+				node["animationref"].animating = false;
 				console.log("OSIDOIASD" + node["animationref"].controlPoint[1][0]);
 					console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
             		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
             		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
             		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-            		node["animationref"].animating = false;
-            	
-
-            }
+            		
+            }*/
 
             node["material"].apply();
             if(node["id"] != "queen" && node["id"] != "king")
@@ -400,6 +401,7 @@ XMLscene.prototype.display = function () {
 
             	node["primitive"].display();
             this.popMatrix();
+        }
         }
 
 
@@ -882,6 +884,92 @@ XMLscene.prototype.transformBoard = function(){
 	}console.log(x+"-"+y + "-aquiiiiiiiiii");
 
 };
+/*
+XMLscene.prototype.updateBoard = function(){
+
+	for(var i = 0; i < this.nodesList.length; i++){
+	        var node = this.nodesList[i];
+	        if(node["id"] == "queen" || node["id"] == "king"){
+	        	node["id"] = "erased";
+	        }
+	}
+
+	var aux = map.split("");
+	console.log(aux);
+
+	var mappieces = [];
+	var x = 0;
+	var y = 7;
+		
+	for(var k=0; k< aux.length;k++){
+		if(aux[k]=='$'||aux[k]=='&'||aux[k]=='+'||aux[k]=='*'||aux[k]==' ')
+		{
+			mappieces.push(aux[k]);
+		}
+	}
+
+	for (var i=0; i< mappieces.length; i++) {
+
+			if(mappieces[i] == '$'){
+				var q = new Queen(this,[x,y]);
+				var queen = [];
+				queen["texture"] = new CGFtexture(this, "scenes/textures/green.jpg");
+			    queen["material"] = this.materialsList[0];
+			    queen["animationref"] = null;
+			    queen["primitive"] = q;
+			    queen["id"] = "queen";
+			    queen["matrix"] = mat4.create();
+				this.nodesList.push(queen);
+
+			}
+
+			else if(mappieces[i] == '&'){
+				var q = new Queen(this,[x,y]);
+				var queen = [];
+				queen["texture"] = new CGFtexture(this, "scenes/textures/blue.jpg");
+			    queen["material"] = this.materialsList[0];
+			    queen["animationref"] = null;
+			    queen["primitive"] = q;
+			    queen["id"] = "queen";
+			    queen["matrix"] = mat4.create();
+				this.nodesList.push(queen); 	
+
+			}
+
+			else if(mappieces[i] == '+'){
+				var k = new King(this,[x,y]);
+				var king = [];
+				king["texture"] = new CGFtexture(this, "scenes/textures/golden.jpg");
+			    king["material"] = this.materialsList[0];
+			    king["animationref"] = null;
+			    king["primitive"] = k;
+			    king["id"] = "king";
+				this.nodesList.push(king);
+			}
+
+			else if(mappieces[i] == '*'){
+				var k = new King(this,[x,y]);
+				var king = [];
+				king["texture"] = new CGFtexture(this, "scenes/textures/golden2.jpg");
+			    king["material"] = this.materialsList[0];
+			    king["animationref"] = null;
+			    king["primitive"] = k;
+			    king["id"] = "king";
+				this.nodesList.push(king);
+			}
+
+
+		y = y - 1;
+
+		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
+		{
+			x = x + 1;
+			y = 7;
+		}
+	}
+
+
+};*/
 
 String.prototype.insert = function (index, string) {
   if (index > 0)
@@ -952,6 +1040,7 @@ XMLscene.prototype.handleReply = function(data){
        		
        	}
         console.log("Mapa após pedido: "+map);
+        this.mapUpdated = map;
        if(tempplayer == 1)
         tempplayer = 2;
 		else
@@ -967,6 +1056,44 @@ XMLscene.prototype.handleReply = function(data){
 };
 
 XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
+
+
+	/*//atualiza mapa
+	if(this.count != 0){
+		this.updateBoard();
+	}*/
+
+	
+
+	
+    if(this.count != 0){
+    	var c = this.count-1;
+    	var nameTmp = "movePiece" + c;
+    	var nameTmpF = "movePieceF" + c;
+
+    	 for(var i = 0; i < this.nodesList.length; i++){
+	        var node = this.nodesList[i];
+	        if(node["animationref"] != null && node["animationref"].id == nameTmp && node["animationref"].finished == true && node["animationref"].animating == true){
+	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
+	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
+	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+	    		node["animationref"].animating = false;
+
+	        }
+
+	        else if(node["animationref"] != null && node["animationref"].id == nameTmpF && node["animationref"].finished == true && node["animationref"].animating == true){
+	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
+	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
+	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+	    		node["animationref"].animating = false;
+	        }
+
+	    }
+
+	}
+
 	var name = "movePiece" + this.count;
 	var nameF = "movePieceF" + this.count;
 	console.log(name);
@@ -1053,7 +1180,6 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 				animation["type"] = 'linear';
 				node["animationref"] = name;
 				this.animationsList.push(animation);
-				node["primitive"].x = xi1;
 
 				//node["primitive"].x = xi1 + moveX; 
 				//node["primitive"].y = yi + moveY; 
