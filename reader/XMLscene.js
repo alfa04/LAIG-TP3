@@ -1074,20 +1074,20 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
     	 for(var i = 0; i < this.nodesList.length; i++){
 	        var node = this.nodesList[i];
 	        if(node["animationref"] != null && node["animationref"].id == nameTmp && node["animationref"].finished == true && node["animationref"].animating == true){
+	    		node["animationref"].animating = false;
 	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
 	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
 	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
 	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-	    		node["animationref"].animating = false;
 
 	        }
 
 	        else if(node["animationref"] != null && node["animationref"].id == nameTmpF && node["animationref"].finished == true && node["animationref"].animating == true){
+	        	node["animationref"].animating = false;
 	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
 	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
 	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
 	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-	    		node["animationref"].animating = false;
 	        }
 
 	    }
