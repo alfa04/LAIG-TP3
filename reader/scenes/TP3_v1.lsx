@@ -54,6 +54,16 @@
         <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
     </TEXTURE>
 
+    <TEXTURE id="grass">
+        <file path="textures/grass.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="ocean">
+        <file path="textures/ocean.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1.0" t="1.0" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
 
     <!-- NOTE: this block "TEXTURE" must be repeated as necessary with different "id" -->
     
@@ -301,6 +311,7 @@
   
         <DESCENDANTS> 
             <DESCENDANT id="tabuleiro" />
+            <DESCENDANT id="ambient" />
         </DESCENDANTS>
 
     </NODE>
@@ -387,9 +398,23 @@
 
     </NODE>
     <!-- lINHA 1 -->
+
+    <NODE id="ambient">  
+        <MATERIAL id="body" />
+        <TEXTURE id="squarewhite" />    
+        <DESCENDANTS>  
+            <DESCENDANT id="back2" />
+            <DESCENDANT id="back3" />
+            <DESCENDANT id="back4" />
+            <DESCENDANT id="back5" />
+            <DESCENDANT id="back6" />
+             <!--    <DESCENDANT id="rainha" /> -->
+        </DESCENDANTS>
+    </NODE>
+
  <NODE id="back2">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />
+        <TEXTURE id="null" />
 	<ROTATION axis="x" angle="90.0" />
 	<ROTATION axis="y" angle="180.0" />
 	 <TRANSLATION x="-40" y="-30" z="-10" />     
@@ -400,7 +425,7 @@
     </NODE>
 <NODE id="back3">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />
+        <TEXTURE id="null" />
 	<ROTATION axis="x" angle="90.0" />
 	 <TRANSLATION x="-30" y="-30" z="-16" />     
         <DESCENDANTS>  
@@ -410,7 +435,7 @@
     </NODE>
 <NODE id="back4">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />
+        <TEXTURE id="null" />
 	<ROTATION axis="x" angle="90.0" />
 	<ROTATION axis="y" angle="270.0" />
 	 <TRANSLATION x="-20" y="-30" z="-20" />     
@@ -421,7 +446,7 @@
     </NODE>
 <NODE id="back5">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />
+        <TEXTURE id="null" />
 	<ROTATION axis="x" angle="90.0" />
 	<ROTATION axis="y" angle="450.0" />
 	 <TRANSLATION x="-20" y="-40" z="-30" />     
@@ -431,7 +456,7 @@
         </DESCENDANTS>´
 <NODE id="back6">  
         <MATERIAL id="body" />
-        <TEXTURE id="squarewhite" />
+        <TEXTURE id="null" />
 	<ROTATION axis="x" angle="180" />
 	<ROTATION axis="y" angle="180" />
 	<TRANSLATION x="-40" y="-40" z="-40" />   

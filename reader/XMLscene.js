@@ -855,7 +855,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 {
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
-	
+
 	console.log("XI:" + xi + " YI: " + yi + "XF: " + xf + "YF: " + yf);
 	//absoluto para já a move porque nem todas dão
 
@@ -1223,13 +1223,18 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 	        		var moveY = 0;
 	        		console.log(xi + "xi1, " + yi + "yi");
 	        		console.log(xf+ "xf, " + yf + "yf");
-	        		if(xf-xi != 0){
+	        		if(xf-xi != 0 && yf-yi == 0){
 	        			moveX = -(xf-xi);
 	        			moveY = 0;
 	        		}
 
 	        		else if(xf-xi == 0 && yf-yi != 0){
 	        			moveX = 0;
+	        			moveY = yf-yi;
+	        		}
+
+	        		else if(xf-xi != 0 && yf-yi != 0){
+	        			moveX = -(xf-xi);
 	        			moveY = yf-yi;
 	        		}
 
@@ -1333,6 +1338,66 @@ XMLscene.prototype.switchLight = function(id, _switch) {
     for (var i = 0; i < this.lights.length; ++i) {
         if (id == this.lights[i].lsxid) {
             _switch ? this.lights[i].enable() : this.lights[i].disable();
+        }
+    }
+};
+
+XMLscene.prototype.setBlack = function() {
+
+     for (var i = 0; i < this.nodesList.length; ++i) {
+     	var node = this.nodesList[i];
+        if (node["id"] == "back") {
+        	for(var j = 0; j<this.texturesList.length; j++){
+        		if(this.texturesList[j]["id"] == "squareblack"){
+        			node["texture"] = this.texturesList[j];
+        		}
+        	}
+            
+        }
+    }
+};
+
+XMLscene.prototype.setGrass = function() {
+
+     for (var i = 0; i < this.nodesList.length; ++i) {
+     	var node = this.nodesList[i];
+        if (node["id"] == "back") {
+        	for(var j = 0; j<this.texturesList.length; j++){
+        		if(this.texturesList[j]["id"] == "grass"){
+        			node["texture"] = this.texturesList[j];
+        		}
+        	}
+            
+        }
+    }
+};
+
+XMLscene.prototype.setWhite = function() {
+
+     for (var i = 0; i < this.nodesList.length; ++i) {
+     	var node = this.nodesList[i];
+        if (node["id"] == "back") {
+        	for(var j = 0; j<this.texturesList.length; j++){
+        		if(this.texturesList[j]["id"] == "squarewhite"){
+        			node["texture"] = this.texturesList[j];
+        		}
+        	}
+            
+        }
+    }
+};
+
+XMLscene.prototype.setOcean = function() {
+
+     for (var i = 0; i < this.nodesList.length; ++i) {
+     	var node = this.nodesList[i];
+        if (node["id"] == "back") {
+        	for(var j = 0; j<this.texturesList.length; j++){
+        		if(this.texturesList[j]["id"] == "ocean"){
+        			node["texture"] = this.texturesList[j];
+        		}
+        	}
+            
         }
     }
 };

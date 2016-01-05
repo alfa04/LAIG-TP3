@@ -22,6 +22,14 @@ Interface.prototype.init = function(application) {
     this.cameras.add(this.scene, 'cameraGreen').name("cam Green");
     this.cameras.add(this.scene, 'cameraBlue').name("cam Blue");
 
+    this.ambients = this.menu.addFolder("Ambients");
+    this.ambients.add(this.scene, 'setBlack').name("Black");
+    this.ambients.add(this.scene, 'setWhite').name("White");
+    this.ambients.add(this.scene, 'setGrass').name("Grass");
+    this.ambients.add(this.scene, 'setOcean').name("Ocean");
+
+
+
 
     return true;
 };
@@ -31,12 +39,6 @@ Interface.prototype.setScene = function(scene) {
     scene.interface = this;
 };
 
-
-Interface.prototype.newGame = function() {
-
-    this.scene.status = "newGame";
-
-};
 
 Interface.prototype.enableAnims = function() {
 
@@ -74,20 +76,3 @@ Interface.prototype.initLights = function() {
         });
     }
 };
-
-/*Interface.prototype.enableLights = function() {
-    var group = this.gui.addFolder("ON/OFF");
-    group.open();
-
-    var myInterface = this;
-
-    for (status in this.scene.lightsNo) {
-        group.add(this.scene.lightsNo, status).onChange(function(value) {
-            myInterface.scene.enableL(this.property, value);
-        });
-    }
-
-    group.close();
-};*/
-
-
