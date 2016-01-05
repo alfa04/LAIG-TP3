@@ -23,7 +23,7 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-
+    this.winner = null;
     this.mapUpdated = [];
     this.leaveslist = [];
     this.texturesList = [];
@@ -332,6 +332,7 @@ XMLscene.prototype.display = function () {
 	this.activeShader.setUniformsValues({'charCoords': [3,5]});
 	this.translate(1,0,0);
 	this.plane.display();
+
 	if(tempturns => 0){
 	
 		if(tempturns == 10){
@@ -343,37 +344,91 @@ XMLscene.prototype.display = function () {
 			this.plane.display();
 		}
 		else if (tempturns > 0){
-	this.activeShader.setUniformsValues({'charCoords': [tempturns,3]});
-	this.translate(2,0,0);
-	this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [tempturns,3]});
+			this.translate(2,0,0);
+			this.plane.display();
 		}
-		else{
-	this.activeShader.setUniformsValues({'charCoords': [7,4]});
-	this.translate(2,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [1,4]});
-	this.translate(1,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [13,4]});
-	this.translate(1,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [5,4]});
-	this.translate(1,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [15,4]});
-	this.translate(2,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [6,5]});
-	this.translate(1,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [5,4]});
-	this.translate(1,0,0);
-	this.plane.display();
-	this.activeShader.setUniformsValues({'charCoords': [2,5]});
-	this.translate(1,0,0);
-	this.plane.display();
+		else if(tempturns == 0){
+			this.activeShader.setUniformsValues({'charCoords': [7,4]});
+			this.translate(2,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [1,4]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [13,4]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [5,4]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [15,4]});
+			this.translate(2,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [6,5]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [5,4]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [2,5]});
+			this.translate(1,0,0);
+			this.plane.display();
+			this.setPickEnabled(false);
 		}
+
+		
 	}	
+
+
+	if(this.winner == "p1"){
+		
+		this.activeShader.setUniformsValues({'charCoords': [0,5]});
+		this.translate(2,-1,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [1,3]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [7,5]});
+		this.translate(2,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [9,4]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [14,4]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [3,5]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.setPickEnabled(false);
+
+	}
+
+	else if(this.winner == "p2"){
+		
+		this.activeShader.setUniformsValues({'charCoords': [0,5]});
+		this.translate(2,-1,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [2,3]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [7,5]});
+		this.translate(2,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [9,4]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [14,4]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.activeShader.setUniformsValues({'charCoords': [3,5]});
+		this.translate(1,0,0);
+		this.plane.display();
+		this.setPickEnabled(false);
+
+	}
+
+
 	this.popMatrix();
 	
 	// Apply transformations corresponding to the camera position relative to the origin
@@ -460,7 +515,7 @@ XMLscene.prototype.display = function () {
             }*/
 
             node["material"].apply();
-            if(node["id"] != "queen" && node["id"] != "king")
+            if(node["id"] != "queen" && node["id"] != "king+" && node["id"] != "king*")
             	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
 
@@ -929,7 +984,7 @@ XMLscene.prototype.transformBoard = function(){
 			    king["material"] = this.materialsList[0];
 			    king["animationref"] = null;
 			    king["primitive"] = k;
-			    king["id"] = "king";
+			    king["id"] = "king+";
 				this.nodesList.push(king);
 			}
 
@@ -940,7 +995,7 @@ XMLscene.prototype.transformBoard = function(){
 			    king["material"] = this.materialsList[0];
 			    king["animationref"] = null;
 			    king["primitive"] = k;
-			    king["id"] = "king";
+			    king["id"] = "king*";
 				this.nodesList.push(king);
 			}
 
@@ -1180,7 +1235,7 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 		var xf1 = 0;
 		 for(var i = 0; i < this.nodesList.length; i++){
 	        var node = this.nodesList[i];
-	        if(node["id"] == "queen" || node["id"] == "king"){
+	        if(node["id"] == "queen" || node["id"] == "king+" || node["id"] == "king*"){
 	        	console.log("xi"+ xi + "yi" + yi);
 	        		
 	        	if(xi == 0)
@@ -1274,6 +1329,16 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 					animationF["type"] = 'linear';
 					node["animationref"] = nameF;
 					this.animationsList.push(animationF);
+
+					if(node["id"] == "king+"){
+						this.winner = "p1";
+					}
+
+					else if(node["id"] == "king*"){
+						this.winner = "p2";
+					}
+
+					console.log(this.winner+ "THE WINNER IS");
 
 				}
 
