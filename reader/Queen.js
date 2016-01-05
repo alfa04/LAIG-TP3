@@ -84,7 +84,6 @@ Queen.prototype.display = function () {
 
     this.scene.popMatrix();
 
-    //CGFobject.prototype.display.call(this);
 };
 
 Queen.prototype.updateTex = function(S, T) {

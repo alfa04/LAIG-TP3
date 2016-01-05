@@ -212,9 +212,7 @@ XMLscene.prototype.onGraphLoaded = function ()
     //ANIMATIONS
     for(var i = 0; i < this.nodesList.length; i++){
         var node = this.nodesList[i];
-        //console.log(node.id);
 		for(var j = 0; j<this.graph.animationsList.length; j++){
-			//console.log(this.graph.animationsList[j].id+ "node" + node["animationref"]);
 
 			if(node["animationref"] == this.graph.animationsList[j].id){
 				
@@ -246,7 +244,6 @@ XMLscene.prototype.display = function () {
 	this.clearPickRegistration();
 	
 	
-	//console.log(this.map.length + "aqui");
 	// Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -515,11 +512,9 @@ XMLscene.prototype.display = function () {
         for(var i = 0; i < this.nodesList.length; i++){
         
         	var node = this.nodesList[i];
-        	//console.log(node["texture"]);
             this.pushMatrix();
             node["material"].setTexture(node["texture"]);
             if (node["texture"] != null) {
-            	//console.log(node["primitive"]);
                 node["primitive"].updateTex(node["texture"].amplifFactor_S, node["texture"].amplifFactor_T);
             }
             
@@ -527,17 +522,7 @@ XMLscene.prototype.display = function () {
             	this.multMatrix(node["animationref"].matrix);
 			}
 
-			/*if(node["animationref"] != null && node["animationref"].finished == true && node["animationref"].animating == true){
-				node["animationref"].animating = false;
-				console.log("OSIDOIASD" + node["animationref"].controlPoint[1][0]);
-					console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
-            		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
-            		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
-            		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-            		
-            }*/
-
-            node["material"].apply();
+			node["material"].apply();
             if(node["id"] != "queen" && node["id"] != "king+" && node["id"] != "king*")
             	this.multMatrix(node["matrix"]);
             this.registerForPick(node["id"], node["primitive"]);
@@ -547,35 +532,8 @@ XMLscene.prototype.display = function () {
 
         }
 
-
-        //queens
-/*
-        for(var i = 0; i < this.queensList.length; i++){
-        
-        	var queen = this.queensList[i];
-        	var inter = "dont"
-            this.pushMatrix();
-            this.registerForPick(inter, queen);
-        	queen.display(); 
-            this.popMatrix();
-        }
-
-         //kings
-
-        for(var i = 0; i < this.kingsList.length; i++){
-        
-        	var king = this.kingsList[i];
-        	
-            this.pushMatrix();
-        	king.display();    
-            this.popMatrix();
-        }
-
-
-        */
 	}
 
-	//this.transformBoard();
 
 };
 
@@ -756,7 +714,6 @@ XMLscene.prototype.calcNodes = function(node, nodeTexture, nodeMaterial, nodeMat
 				}
 			}
 			
-			//console.log(this.n);
 			this.nodesList.push(this.n);
 			continue;
 
@@ -775,8 +732,6 @@ XMLscene.prototype.setAnimation = function(){
 	for(var i = 0; i < this.nodesList.length; i++){
 		var node = this.nodesList[i];
 		for (var j = 0; j < this.animationsList.length; j++) {
-
-				//console.log(this.animationsList.length);
 			if(node["animationref"] == this.animationsList[j].id){
 				node["animationref"] = this.animationsList[j];
 				this.animsNo[this.animationsList[j].id] = false;
@@ -836,7 +791,6 @@ XMLscene.prototype.update = function(timeNow) {
     for(var i = 0; i < this.nodesList.length; i++){
 		if(this.nodesList[i]["animationref"] != null && this.nodesList[i]["animationref"].finished == false){
             this.nodesList[i]["animationref"].update(step);
-           // console.log(step);
 		}
 	}
 
@@ -876,7 +830,7 @@ XMLscene.prototype.logPicking = function ()
 					console.log(obj);
 					
 					var customId = this.pickResults[i][1];				
-					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10) + ", with coordY = " + customId % 10);
+					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10)-1 + ", with coordY = " + (customId % 10)-1);
 				
 				console.log(this.piece1);
 				this.temptex = this.nodesList[this.indexNode(customId)]["texture"];
@@ -900,10 +854,8 @@ XMLscene.prototype.logPicking = function ()
 				this.texture1 = this.temptex;
 				this.id1 = customId;
 				this.xi = Math.floor(customId/10) - 1;
-				console.log("LOGGG"+this.xi);
 
 				this.yi = customId % 10 - 1;
-				//this.yi = customId % 10;
 				}
 				}
 			}
@@ -934,12 +886,7 @@ XMLscene.prototype.makeRequest = function(xi,yi,xf,yf)
 	// Get Parameter Values
 	//var requestString = "pvpgame(1,[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']],10,4,3,4,4)";				
 
-	console.log("XI:" + xi + " YI: " + yi + "XF: " + xf + "YF: " + yf);
-	//absoluto para já a move porque nem todas dão
-
-	//console.log("MAPPPP"+this.map);
-	//absoluto para já a move
-
+	console.log("XI: " + xi + ", YI: " + yi + ", XF: " + xf + ", YF: " + yf);
 
 	//var requestString = "pvpgame(" + this.player + ","+ this.map +"," +this.turns + ","+ xi +"," +yi+","+xf+","+yf+")";
 	var requestString = "pvpgame(" + tempplayer + ","+ map +"," +tempturns + ","+ yi +"," +xi+","+yf+","+xf+")";
@@ -968,12 +915,9 @@ XMLscene.prototype.transformBoard = function(){
 
 	console.log("MapPieces");
 	console.log(mappieces);	
-		
-	console.log(this.map);
 
 	for (var i=0; i< mappieces.length; i++) {
 
-		//console.log(x+"-"+y + "-aquiiiiiiiiii");
 			if(mappieces[i] == '$'){
 				var q = new Queen(this,[x,y]);
 				var queen = [];
@@ -1030,95 +974,8 @@ XMLscene.prototype.transformBoard = function(){
 			x = x + 1;
 			y = 7;
 		}
-	}console.log(x+"-"+y + "-aquiiiiiiiiii");
-
+	}
 };
-/*
-XMLscene.prototype.updateBoard = function(){
-
-	for(var i = 0; i < this.nodesList.length; i++){
-	        var node = this.nodesList[i];
-	        if(node["id"] == "queen" || node["id"] == "king"){
-	        	node["id"] = "erased";
-	        }
-	}
-
-	var aux = map.split("");
-	console.log(aux);
-
-	var mappieces = [];
-	var x = 0;
-	var y = 7;
-		
-	for(var k=0; k< aux.length;k++){
-		if(aux[k]=='$'||aux[k]=='&'||aux[k]=='+'||aux[k]=='*'||aux[k]==' ')
-		{
-			mappieces.push(aux[k]);
-		}
-	}
-
-	for (var i=0; i< mappieces.length; i++) {
-
-			if(mappieces[i] == '$'){
-				var q = new Queen(this,[x,y]);
-				var queen = [];
-				queen["texture"] = new CGFtexture(this, "scenes/textures/green.jpg");
-			    queen["material"] = this.materialsList[0];
-			    queen["animationref"] = null;
-			    queen["primitive"] = q;
-			    queen["id"] = "queen";
-			    queen["matrix"] = mat4.create();
-				this.nodesList.push(queen);
-
-			}
-
-			else if(mappieces[i] == '&'){
-				var q = new Queen(this,[x,y]);
-				var queen = [];
-				queen["texture"] = new CGFtexture(this, "scenes/textures/blue.jpg");
-			    queen["material"] = this.materialsList[0];
-			    queen["animationref"] = null;
-			    queen["primitive"] = q;
-			    queen["id"] = "queen";
-			    queen["matrix"] = mat4.create();
-				this.nodesList.push(queen); 	
-
-			}
-
-			else if(mappieces[i] == '+'){
-				var k = new King(this,[x,y]);
-				var king = [];
-				king["texture"] = new CGFtexture(this, "scenes/textures/golden.jpg");
-			    king["material"] = this.materialsList[0];
-			    king["animationref"] = null;
-			    king["primitive"] = k;
-			    king["id"] = "king";
-				this.nodesList.push(king);
-			}
-
-			else if(mappieces[i] == '*'){
-				var k = new King(this,[x,y]);
-				var king = [];
-				king["texture"] = new CGFtexture(this, "scenes/textures/golden2.jpg");
-			    king["material"] = this.materialsList[0];
-			    king["animationref"] = null;
-			    king["primitive"] = k;
-			    king["id"] = "king";
-				this.nodesList.push(king);
-			}
-
-
-		y = y - 1;
-
-		if(i==7||i==15||i==23||i==31||i==39||i==47||i==55||i==63)
-		{
-			x = x + 1;
-			y = 7;
-		}
-	}
-
-
-};*/
 
 String.prototype.insert = function (index, string) {
   if (index > 0)
@@ -1138,12 +995,11 @@ XMLscene.prototype.handleReply = function(data){
 	// parse server response
     canPlay = 1;
     console.log('Código de resposta:' + resposta[1]);
-	console.log(validPlay + "atua ae");
+
     // handle reply
     switch(resposta[1]){
       case '0':
       	validPlay = 1; 
-		console.log(validPlay + "atua ae" + canPlay);
        	map = data.target.response.slice(3);
        	map = map.substring(0, map.length - 1);
        	timeout=9;
@@ -1165,31 +1021,9 @@ XMLscene.prototype.handleReply = function(data){
        		}
        		if((map[x] == "[" && map[x+1] == ",") || (map[x] == "," && map[x+1] == "]") || (map[x] == "," && map[x+1] == ",")){
        			map = map.insert(x + 1,"''");
-			//	var t = map.substring(0,x+2);
-			//	var p = map.substring(x+3,map.length);
-			//	map = t+p;
 				x += 2;
        		}
-			/*
-			else{
-				if(map[x+1] != "]"){
-			map = map.insert(x,"'',");
-			var p =  map.substring(0, x+3);
-			var t = map.substring(x+5,map.length);
-			console.log(p);
-			console.log(t);
-			map=p+t;
-			x += 2;
-				}
-				else{
-			console.log(map);
-       		map = map.insert(x,"''");
-       		x += 2;
-				}
-			}
-       		}
-       		
-*/
+			
        		
        	}
         console.log("Mapa após pedido: "+map);
@@ -1202,25 +1036,16 @@ XMLscene.prototype.handleReply = function(data){
 		
 		
         break;
+
       default:
         console.log('erro no servidor');
         validPlay = 0; 
-        console.log(validPlay + "atua ae" + canPlay);
         break;
     }
    
-	//document.querySelector("#query_result").innerHTML=data.target.response;
 };
 
 XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
-
-
-	/*
-	if(this.count != 0){
-		this.updateBoard();
-	}*/
-
-	console.log(validPlay + "estoua qui");
 
 	if(validPlay == 1){
 
@@ -1234,20 +1059,16 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 		        var node = this.nodesList[i];
 		        if(node["animationref"] != null && node["animationref"].id == nameTmp && node["animationref"].finished == true && node["animationref"].animating == true){
 		    		node["animationref"].animating = false;
-		        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
-		    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+		        	node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
 		    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
-		    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-
+		    		
 		        }
 
 		        else if(node["animationref"] != null && node["animationref"].id == nameTmpF && node["animationref"].finished == true && node["animationref"].animating == true){
 		        	node["animationref"].animating = false;
-		        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
-		    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+		        	node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
 		    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
-		    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
-		        }
+		    	}
 
 		    }
 
@@ -1255,13 +1076,12 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 
 		var name = "movePiece" + this.count;
 		var nameF = "movePieceF" + this.count;
-		console.log(name);
+
 		var xi1 = 0;
 		var xf1 = 0;
 		 for(var i = 0; i < this.nodesList.length; i++){
 	        var node = this.nodesList[i];
 	        if(node["id"] == "queen" || node["id"] == "king+" || node["id"] == "king*"){
-	        	console.log("xi"+ xi + "yi" + yi);
 	        		
 	        	if(xi == 0)
 	        		xi1 = 7;
@@ -1328,7 +1148,7 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 	        		cp[1].push(moveX);
 	        		cp[1].push(0);
 	        		cp[1].push(moveY);
-					console.log("cp: " + cp);
+
 	        		var animation = [];
 	        		animation = new LinearAnimation(name, 2.5, cp);
 					animation["type"] = 'linear';
@@ -1348,7 +1168,7 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 	        		cpf[1].push(0);
 	        		cpf[1].push(0);
 	        		cpf[1].push(8);
-					console.log("cpf: " + cpf);
+
 	        		var animationF = [];
 	        		animationF = new LinearAnimation(nameF, 5, cpf);
 					animationF["type"] = 'linear';
@@ -1362,8 +1182,6 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 					else if(node["id"] == "king*"){
 						this.winner = "p2";
 					}
-
-					console.log(this.winner+ "THE WINNER IS");
 
 				}
 
