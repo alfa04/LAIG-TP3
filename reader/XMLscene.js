@@ -45,6 +45,7 @@ XMLscene.prototype.init = function (application) {
     map = "[['$','$','$','$','+','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['$','$','$','$','$','$','$','$'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','&','&','&','&'],['&','&','&','&','*','&','&','&']]";
 	this.player = 1;
 	this.turns = 10;
+	this.validPlay = 1; 
 	this.axis=new CGFaxis(this);
 
 
@@ -1051,9 +1052,11 @@ XMLscene.prototype.handleReply = function(data){
 		else
 		tempplayer = 1;
 		tempturns--;
+		this.validPlay = 1; 
         break;
       default:
         console.log('erro no servidor');
+        this.validPlay = 0; 
         break;
     }
    
@@ -1068,146 +1071,144 @@ XMLscene.prototype.getPieceToMove = function(xi,yi,xf,yf){
 		this.updateBoard();
 	}*/
 
-	
+	console.log(this.validPlay);
 
-	//atualiza mapa
-    if(this.count != 0){
-    	var c = this.count-1;
-    	var nameTmp = "movePiece" + c;
-    	var nameTmpF = "movePieceF" + c;
+	if(this.validPlay == 1){
 
-    	 for(var i = 0; i < this.nodesList.length; i++){
+		//atualiza mapa
+	    if(this.count != 0){
+	    	var c = this.count-1;
+	    	var nameTmp = "movePiece" + c;
+	    	var nameTmpF = "movePieceF" + c;
+
+	    	 for(var i = 0; i < this.nodesList.length; i++){
+		        var node = this.nodesList[i];
+		        if(node["animationref"] != null && node["animationref"].id == nameTmp && node["animationref"].finished == true && node["animationref"].animating == true){
+		    		node["animationref"].animating = false;
+		        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
+		    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+		    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
+		    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+
+		        }
+
+		        else if(node["animationref"] != null && node["animationref"].id == nameTmpF && node["animationref"].finished == true && node["animationref"].animating == true){
+		        	node["animationref"].animating = false;
+		        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
+		    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
+		    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
+		    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+		        }
+
+		    }
+
+		}
+
+		var name = "movePiece" + this.count;
+		var nameF = "movePieceF" + this.count;
+		console.log(name);
+		var xi1 = 0;
+		var xf1 = 0;
+		 for(var i = 0; i < this.nodesList.length; i++){
 	        var node = this.nodesList[i];
-	        if(node["animationref"] != null && node["animationref"].id == nameTmp && node["animationref"].finished == true && node["animationref"].animating == true){
-	    		node["animationref"].animating = false;
-	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
-	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
-	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
-	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+	        if(node["id"] == "queen" || node["id"] == "king"){
+	        	console.log("xi"+ xi + "yi" + yi);
+	        		
+	        	if(xi == 0)
+	        		xi1 = 7;
+	        	else if(xi == 1)
+	        		xi1 = 6;
+	        	else if(xi == 2)
+	        		xi1 = 5;
+	        	else if(xi == 3)
+	        		xi1 = 4;
+	        	else if(xi == 4)
+	        		xi1 = 3;
+	        	else if(xi == 5)
+	        		xi1 = 2;
+	        	else if(xi == 6)
+	        		xi1 = 1;
+	        	else if(xi == 7)
+	        		xi1 = 0;
 
-	        }
+	        	if(xf == 0)
+	        		xf1 = 7;
+	        	else if(xf == 1)
+	        		xf1 = 6;
+	        	else if(xf == 2)
+	        		xf1 = 5;
+	        	else if(xf == 3)
+	        		xf1 = 4;
+	        	else if(xf == 4)
+	        		xf1 = 3;
+	        	else if(xf == 5)
+	        		xf1 = 2;
+	        	else if(xf == 6)
+	        		xf1 = 1;
+	        	else if(xi == 7)
+	        		xf1 = 0;
 
-	        else if(node["animationref"] != null && node["animationref"].id == nameTmpF && node["animationref"].finished == true && node["animationref"].animating == true){
-	        	node["animationref"].animating = false;
-	        	console.log("x: " + node["primitive"].x +" cp1:" + node["animationref"].controlPoint[1][0] + "y: " + node["primitive"].y + " cp2:" + node["animationref"].controlPoint[1][2]);	
-	    		node["primitive"].x = node["primitive"].x + node["animationref"].controlPoint[1][0];
-	    		node["primitive"].y = node["primitive"].y + node["animationref"].controlPoint[1][2];
-	    		console.log(node["animationref"].id + "   " + node["primitive"].x + "x" + node["primitive"].y + "y");
+
+	        	if(node["primitive"].x == xi1 && node["primitive"].y == yi){
+	        		var moveX = 0;
+	        		var moveY = 0;
+	        		console.log(xi + "xi1, " + yi + "yi");
+	        		console.log(xf+ "xf, " + yf + "yf");
+	        		if(xf-xi != 0){
+	        			moveX = -(xf-xi);
+	        			moveY = 0;
+	        		}
+
+	        		else if(xf-xi == 0 && yf-yi != 0){
+	        			moveX = 0;
+	        			moveY = yf-yi;
+	        		}
+
+	        		
+	        		var cp = [];
+	        		cp[0] = [];
+	        		cp[0].push(0);
+	        		cp[0].push(0);
+	        		cp[0].push(0);
+	        		cp[1] = [];	
+	        		cp[1].push(moveX);
+	        		cp[1].push(0);
+	        		cp[1].push(moveY);
+					console.log("cp: " + cp);
+	        		var animation = [];
+	        		animation = new LinearAnimation(name, 5, cp);
+					animation["type"] = 'linear';
+					node["animationref"] = name;
+					this.animationsList.push(animation);
+					
+				}
+
+				else if(node["primitive"].x == xf1 && node["primitive"].y == yf){
+
+					var cpf = [];
+	        		cpf[0] = [];
+	        		cpf[0].push(0);
+	        		cpf[0].push(0);
+	        		cpf[0].push(0);
+	        		cpf[1] = [];	
+	        		cpf[1].push(0);
+	        		cpf[1].push(0);
+	        		cpf[1].push(8);
+					console.log("cpf: " + cpf);
+	        		var animationF = [];
+	        		animationF = new LinearAnimation(nameF, 5, cpf);
+					animationF["type"] = 'linear';
+					node["animationref"] = nameF;
+					this.animationsList.push(animationF);
+
+				}
+
 	        }
 
 	    }
 
+	    this.count++;
 	}
-
-	var name = "movePiece" + this.count;
-	var nameF = "movePieceF" + this.count;
-	console.log(name);
-	var xi1 = 0;
-	var xf1 = 0;
-	 for(var i = 0; i < this.nodesList.length; i++){
-        var node = this.nodesList[i];
-        if(node["id"] == "queen" || node["id"] == "king"){
-        	console.log("xi"+ xi + "yi" + yi);
-        		
-        	if(xi == 0)
-        		xi1 = 7;
-        	else if(xi == 1)
-        		xi1 = 6;
-        	else if(xi == 2)
-        		xi1 = 5;
-        	else if(xi == 3)
-        		xi1 = 4;
-        	else if(xi == 4)
-        		xi1 = 3;
-        	else if(xi == 5)
-        		xi1 = 2;
-        	else if(xi == 6)
-        		xi1 = 1;
-        	else if(xi == 7)
-        		xi1 = 0;
-
-        	if(xf == 0)
-        		xf1 = 7;
-        	else if(xf == 1)
-        		xf1 = 6;
-        	else if(xf == 2)
-        		xf1 = 5;
-        	else if(xf == 3)
-        		xf1 = 4;
-        	else if(xf == 4)
-        		xf1 = 3;
-        	else if(xf == 5)
-        		xf1 = 2;
-        	else if(xf == 6)
-        		xf1 = 1;
-        	else if(xi == 7)
-        		xf1 = 0;
-
-
-        	if(node["primitive"].x == xi1 && node["primitive"].y == yi){
-        		var moveX = 0;
-        		var moveY = 0;
-        		console.log(xi + "xi1, " + yi + "yi");
-        		console.log(xf+ "xf, " + yf + "yf");
-        		if(xf-xi != 0){
-        			moveX = -(xf-xi);
-        			moveY = 0;
-        		}
-
-        		else if(xf-xi == 0 && yf-yi != 0){
-        			moveX = 0;
-        			moveY = yf-yi;
-        		}
-
-        		
-        		var cp = [];
-        		cp[0] = [];
-        		cp[0].push(0);
-        		cp[0].push(0);
-        		cp[0].push(0);
-        		cp[1] = [];	
-        		cp[1].push(moveX);
-        		cp[1].push(0);
-        		cp[1].push(moveY);
-				console.log("cp: " + cp);
-        		var animation = [];
-        		animation = new LinearAnimation(name, 5, cp);
-				animation["type"] = 'linear';
-				node["animationref"] = name;
-				this.animationsList.push(animation);
-
-				//node["primitive"].x = xi1 + moveX; 
-				//node["primitive"].y = yi + moveY; 
-				
-			}
-
-			else if(node["primitive"].x == xf1 && node["primitive"].y == yf){
-
-				var cpf = [];
-        		cpf[0] = [];
-        		cpf[0].push(0);
-        		cpf[0].push(0);
-        		cpf[0].push(0);
-        		cpf[1] = [];	
-        		cpf[1].push(0);
-        		cpf[1].push(0);
-        		cpf[1].push(8);
-				console.log("cpf: " + cpf);
-        		var animationF = [];
-        		animationF = new LinearAnimation(nameF, 5, cpf);
-				animationF["type"] = 'linear';
-				node["animationref"] = nameF;
-				this.animationsList.push(animationF);
-
-				//node["primitive"].y = yf + 8; 
-
-			}
-
-        }
-
-    }
-
-    this.count++;
 
 };
 
