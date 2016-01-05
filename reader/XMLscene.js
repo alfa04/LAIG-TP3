@@ -12,11 +12,11 @@ var tempturns = 10;
 var map;
 var validPlay = 0;
 var canPlay = 0;
+var timeout = 9;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
     this.initCameras();
-
 	this.enableTextures(true);
 
     this.gl.clearDepth(100.0);
@@ -48,11 +48,9 @@ XMLscene.prototype.init = function (application) {
 	this.player = 1;
 	this.turns = 10;
 	this.axis=new CGFaxis(this);
-
-
-    this.timeNow = new Date().getTime();
-  //  this.q = new Queen(this,[5,5]);
 	
+  //  this.q = new Queen(this,[5,5]);
+	this.timeNow = new Date().getTime();
 
 	this.setUpdatePeriod(10);
 	this.appearance = new CGFappearance(this);
@@ -77,9 +75,18 @@ XMLscene.prototype.init = function (application) {
 
 	// set number of rows and columns in font texture
 	this.textShader.setUniformsValues({'dims': [16, 16]});
-
-
-	
+	setInterval(function(){
+	if(timeout > 0){
+	timeout--;
+	}
+	else{
+	timeout = 9;
+	 if(tempplayer == 1)
+        	tempplayer = 2;
+		else
+			tempplayer = 1;
+	}
+	}, 1000);
 
 };
 
@@ -227,8 +234,10 @@ XMLscene.prototype.onGraphLoaded = function ()
 
 XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
+	
  	this.logPicking();
 	this.clearPickRegistration();
+	
 	
 	//console.log(this.map.length + "aqui");
 	// Clear image and depth buffer everytime we update the scene
@@ -376,7 +385,6 @@ XMLscene.prototype.display = function () {
 			this.setPickEnabled(false);
 		}
 
-		
 	}	
 
 
@@ -429,6 +437,11 @@ XMLscene.prototype.display = function () {
 	}
 
 
+	}
+	
+	this.activeShader.setUniformsValues({'charCoords': [timeout,3]});
+	this.translate(6,0,0);
+	this.plane.display();	
 	this.popMatrix();
 	
 	// Apply transformations corresponding to the camera position relative to the origin
@@ -1110,6 +1123,7 @@ XMLscene.prototype.handleReply = function(data){
 	
 	console.log("Resposta em bruto:");
 	var resposta = data.target.response.split("");
+
 	console.log(data.target.response);
 	// parse server response
     canPlay = 1;
@@ -1122,6 +1136,7 @@ XMLscene.prototype.handleReply = function(data){
 		console.log(validPlay + "atua ae" + canPlay);
        	map = data.target.response.slice(3);
        	map = map.substring(0, map.length - 1);
+       	timeout=9;
        	var x=2;
        	for(x=2;x<map.length;x++){
        		if(map[x] != "," && map[x] != "]" && map[x] != "["){
