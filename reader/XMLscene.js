@@ -12,7 +12,7 @@ var tempturns = 10;
 var map;
 var validPlay = 0;
 var canPlay = 0;
-var timeout = 9;
+var timeout = 15;
 var gameOver = false;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
@@ -83,7 +83,7 @@ XMLscene.prototype.init = function (application) {
 		timeout--;
 		}
 		else{
-		timeout = 9;
+		timeout = 15;
 		 if(tempplayer == 1)
 	        	tempplayer = 2;
 			else
@@ -443,11 +443,26 @@ XMLscene.prototype.display = function () {
 
 	}
 
+	if(gameOver == false){
+		if(timeout > 9){
+			var n = timeout-10;
+			this.activeShader.setUniformsValues({'charCoords': [1,3]});
+			this.translate(6,0,0);
+			this.plane.display();
+			this.activeShader.setUniformsValues({'charCoords': [n,3]});
+			this.translate(1,0,0);
+			this.plane.display();	
+		}
+
+		else{
+			this.activeShader.setUniformsValues({'charCoords': [timeout,3]});
+			this.translate(7,0,0);
+			this.plane.display();
+		}
+	}
 
 	if(gameOver == false){
-		this.activeShader.setUniformsValues({'charCoords': [timeout,3]});
-		this.translate(6,0,0);
-		this.plane.display();	
+			
 	}
 	this.popMatrix();
 	
@@ -1004,7 +1019,7 @@ XMLscene.prototype.handleReply = function(data){
       	validPlay = 1; 
        	map = data.target.response.slice(3);
        	map = map.substring(0, map.length - 1);
-       	timeout=9;
+       	timeout=15;
        	var x=2;
        	for(x=2;x<map.length;x++){
        		if(map[x] != "," && map[x] != "]" && map[x] != "["){
