@@ -829,8 +829,10 @@ XMLscene.prototype.logPicking = function ()
 				{
 					console.log(obj);
 					
-					var customId = this.pickResults[i][1];				
-					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + Math.floor(customId/10)-1 + ", with coordY = " + (customId % 10)-1);
+					var customId = this.pickResults[i][1];	
+					var coordXTmp = Math.floor(customId/10)-1;	
+					var coordYTmp = (customId % 10)-1;			
+					console.log("Picked object: " + obj + ", with pick id " + customId + ", with coordX = " + coordXTmp + ", with coordY = " + coordYTmp);
 				
 				console.log(this.piece1);
 				this.temptex = this.nodesList[this.indexNode(customId)]["texture"];
